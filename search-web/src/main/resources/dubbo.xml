@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.1.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="search_consumer_1" />
+    <dubbo:registry protocol="zookeeper"
+                    address="192.168.190.101:2181,192.168.190.102:2181,192.168.190.105:2181"
+                    file="d:/dubbo/cache/dubbo-consumer.cache"/>
+    <dubbo:protocol name="dubbo"
+                    port="20882"
+                    threadpool="cached"
+                    accesslog="d:/dubbo/logs/dubbo-consumer.log"/>
+    <dubbo:provider threads="200"  version="1.0.0" timeout="30000" />
+    <dubbo:consumer check = "false" version="1.0.0" timeout="30000" />
+    <!--<dubbo:monitor protocol="registry" />-->
+    <bean class="com.huasisoft.search.annotation.AnnotationBean">
+        <constructor-arg name="annotationPackage" type="java.lang.String" value="com.huasisoft.search.**.serviceImpl" />
+    </bean>
+
+</beans>
