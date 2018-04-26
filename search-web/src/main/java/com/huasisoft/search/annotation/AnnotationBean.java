@@ -131,7 +131,7 @@ public class AnnotationBean extends AbstractConfig implements DisposableBean, Be
                 if (clazz.getInterfaces().length > 0) {
                     serviceConfig.setInterface(clazz.getInterfaces()[0]);
                 } else {
-                    throw new IllegalStateException("Failed to export remote serviceImpl class " + clazz.getName() + ", cause: The @Service undefined interfaceClass or interfaceName, and the serviceImpl class unimplemented any interfaces.");
+                    throw new IllegalStateException("Failed to export remote service class " + clazz.getName() + ", cause: The @Service undefined interfaceClass or interfaceName, and the service class unimplemented any interfaces.");
                 }
             }
             if (applicationContext != null) {
@@ -213,8 +213,8 @@ public class AnnotationBean extends AbstractConfig implements DisposableBean, Be
                     }
                 } catch (Exception e) {
                     // modified by lishen
-                    throw new BeanInitializationException("Failed to init remote serviceImpl reference at method " + name + " in class " + bean.getClass().getName(), e);
-//                    logger.error("Failed to init remote serviceImpl reference at method " + name + " in class " + bean.getClass().getName() + ", cause: " + e.getMessage(), e);
+                    throw new BeanInitializationException("Failed to init remote service reference at method " + name + " in class " + bean.getClass().getName(), e);
+//                    logger.error("Failed to init remote service reference at method " + name + " in class " + bean.getClass().getName() + ", cause: " + e.getMessage(), e);
                 }
             }
         }
@@ -233,8 +233,8 @@ public class AnnotationBean extends AbstractConfig implements DisposableBean, Be
                 }
             } catch (Exception e) {
                 // modified by lishen
-                throw new BeanInitializationException("Failed to init remote serviceImpl reference at filed " + field.getName() + " in class " + bean.getClass().getName(), e);
-//            	logger.error("Failed to init remote serviceImpl reference at filed " + field.getName() + " in class " + bean.getClass().getName() + ", cause: " + e.getMessage(), e);
+                throw new BeanInitializationException("Failed to init remote service reference at filed " + field.getName() + " in class " + bean.getClass().getName(), e);
+//            	logger.error("Failed to init remote service reference at filed " + field.getName() + " in class " + bean.getClass().getName() + ", cause: " + e.getMessage(), e);
             }
         }
         return bean;

@@ -2,7 +2,7 @@ package com.huasisoft.search.demo.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.huasisoft.search.demo.model.Logs;
-import com.huasisoft.search.demo.serviceImpl.LogsService;
+import com.huasisoft.search.demo.service.LogsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

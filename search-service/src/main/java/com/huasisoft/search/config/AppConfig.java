@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
 import com.huasisoft.search.demo.model.Logs;
-import com.huasisoft.search.demo.serviceImpl.LogsService;
+import com.huasisoft.search.demo.service.LogsService;
 import org.apache.log4j.Logger;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;

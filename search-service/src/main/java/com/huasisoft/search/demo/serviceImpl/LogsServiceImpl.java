@@ -3,6 +3,7 @@ package com.huasisoft.search.demo.serviceImpl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.huasisoft.search.demo.model.Logs;
+import com.huasisoft.search.demo.service.LogsService;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -28,7 +29,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
  * @Version 2.0.0
  */
 @Service
-public class LogsServiceImpl implements LogsService{
+public class LogsServiceImpl implements LogsService {
 
     @Autowired
     private TransportClient transportClient;
@@ -49,7 +50,6 @@ public class LogsServiceImpl implements LogsService{
 
     @Override
     public List<Logs> createBatch(List<Logs> logs) throws IOException {
-        List<BulkRequestBuilder> requests = new ArrayList<>();
         int i=1;
         BulkRequestBuilder bulkRequest = transportClient.prepareBulk();
         for (Logs log : logs) {
