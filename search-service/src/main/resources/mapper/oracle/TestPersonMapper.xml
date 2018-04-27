@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.huasisoft.hae.mapper.demo.TestPersonMapper" >
+
+  <resultMap id="testPerson" type="com.huasisoft.search.demo.model.TestPerson" >
+    <id property="id" column="ID" />
+    <result property="name" column="NAME" />
+    <result property="age" column="AGE" />
+  </resultMap>
+  
+  <update id="changeNumber">
+  	update HAE_DEMO_TESTPERSON t set t.AGE = #{newNumber} where t.ID = #{id}
+  </update> 
+  
+</mapper>

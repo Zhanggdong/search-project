@@ -1,4 +1,4 @@
-package com.huasisoft.search.demo;
+package com.huasisoft.search.demo.document;
 
 import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.index.IndexResponse;

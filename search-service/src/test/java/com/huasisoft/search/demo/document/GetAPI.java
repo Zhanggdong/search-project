@@ -1,4 +1,4 @@
-package com.huasisoft.search.demo;
+package com.huasisoft.search.demo.document;
 
 import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.get.GetResponse;
@@ -21,7 +21,7 @@ public class GetAPI extends BaseTest{
         /**
          * 根据id查看文档
          */
-        GetResponse response = transportClient.prepareGet("twitter", "tweet", "1").get();
+        GetResponse response = transportClient.prepareGet("twitter", "tweet", "2").get();
 
 //        GetResponse response = client.prepareGet("twitter", "tweet", "1")
 //                .setOperationThreaded(false)  //`true` 是在不同的线程里执行此次操作

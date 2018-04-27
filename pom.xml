@@ -32,7 +32,7 @@
     <dubbo.version>2.5.3</dubbo.version>
     <elasticsearch.version>5.6.4</elasticsearch.version>
     <spring-data-elasticsearch.version>3.0.6.RELEASE</spring-data-elasticsearch.version>
-    <ik.version>5.6.4</ik.version>
+    <!--<ik.version>5.6.4</ik.version>-->
     <spring-kafka.version>1.2.0.RELEASE</spring-kafka.version>
     <kafka-clients.version>0.10.2.0</kafka-clients.version>
     <redis.version>2.9.0</redis.version>
@@ -185,12 +185,12 @@
         <artifactId>transport</artifactId>
         <version>${elasticsearch.version}</version>
       </dependency>
-      <dependency>
+    <!--  <dependency>
         <groupId>org.elasticsearch</groupId>
         <artifactId>elasticsearch-analysis-ik</artifactId>
         <version>${ik.version}</version>
         <classifier>zip</classifier>
-      </dependency>
+      </dependency>-->
       <dependency>
         <groupId>org.apache.kafka</groupId>
         <artifactId>kafka-clients</artifactId>
@@ -234,32 +234,7 @@
         <artifactId>slf4j-simple</artifactId>
         <version>1.7.21</version>
       </dependency>
-      <!--<dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>${log4j.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>-->
+
       <!-- jsr303 validate bean -->
       <dependency>
         <groupId>org.hibernate</groupId>
@@ -299,6 +274,40 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.4</version>
+      </dependency>
+      <!--Mybatis-->
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>1.2.4</version>
+      </dependency>
+
+      <!-- Mybatis Generator -->
+      <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>1.3.2</version>
+        <scope>compile</scope>
+        <optional>true</optional>
+      </dependency>
+
+      <!--分页插件-->
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+        <version>4.1.4</version>
+      </dependency>
+
+      <!--通用Mapper-->
+      <dependency>
+        <groupId>tk.mybatis</groupId>
+        <artifactId>mapper</artifactId>
+        <version>3.3.6</version>
       </dependency>
       <!-- for office application : word , excel  -->
       <dependency>
