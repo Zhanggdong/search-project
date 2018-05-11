@@ -6,6 +6,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
+import com.huasisoft.search.config.beans.ProxySpringContextsUtil;
 import com.huasisoft.search.demo.model.Logs;
 import com.huasisoft.search.demo.service.LogsService;
 import org.apache.log4j.Logger;
@@ -35,7 +36,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @PropertySource({"classpath:/properties/application.properties"})
 @ComponentScan(basePackages="com.huasisoft.search")
 @ImportResource("dubbo.xml")
-public class AppConfig implements AsyncConfigurer,SchedulingConfigurer{
+public class AppConfig extends ProxySpringContextsUtil implements AsyncConfigurer,SchedulingConfigurer{
 
 	private static Logger logger = Logger.getLogger(AppConfig.class.getName());
 	
@@ -54,7 +55,7 @@ public class AppConfig implements AsyncConfigurer,SchedulingConfigurer{
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-	
+
 	@Override
 	@Bean(name="threadPoolTaskExecutor")
 	public Executor getAsyncExecutor() {
@@ -67,6 +68,17 @@ public class AppConfig implements AsyncConfigurer,SchedulingConfigurer{
         executor.setThreadNamePrefix("haeExecutor-");
         executor.initialize();
         return executor;
+	}
+
+
+	public static ApplicationContext applicationContext()throws Exception{
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		logger.info("已启动，按按任意键退出");
+		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+		for(String beanDefinitionName : beanDefinitionNames){
+			logger.info(beanDefinitionName);
+		}
+		return applicationContext;
 	}
 
 	@Override 
@@ -84,20 +96,15 @@ public class AppConfig implements AsyncConfigurer,SchedulingConfigurer{
         return Executors.newScheduledThreadPool(Integer.valueOf(schedulePoolSize));
     }
 
-	public static void main(String[] args) throws IOException {
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-		logger.info("已启动，按按任意键退出");
-		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-		for(String beanDefinitionName : beanDefinitionNames){
-			logger.info(beanDefinitionName);
-		}
-		LogsService logsService = applicationContext.getBean(LogsService.class);
+	public static void main(String[] args) throws Exception {
+		ApplicationContext applicationContext = applicationContext();
+		/*LogsService logsService = applicationContext.getBean(LogsService.class);
 		Logs log = new Logs();
 		log.setUserId(1);
 		log.setSystem("search-ps");
 		log.setUrl("/api/logs/create");
-		log.setContent("这两句是测试用的demo，可以测试整个框架的运行情况 ,spring + dubbo + elasticsearch 完整");
-		System.out.println(logsService.create(log).toString());
+		log.setContent("这两句是测试用的demo，可以测试整个框架的运行情况 ,spring + dubbo + elasticsearch 完整");*/
+		//System.out.println(logsService.create(log).toString());
 		System.in.read();
 		logger.info("停止退出");
 	}

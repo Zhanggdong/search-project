@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../" scrollerY="false"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 树型抽屉导航start-->
+<script type="text/javascript" src="../../libs/js/tree/ztree/ztree.js"></script>
+<link href="../../libs/js/tree/ztree/ztree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../libs/js/nav/treeAccordion_normal.js"></script>
+<!-- 树型抽屉导航end -->
+<style>
+	.ztree li span.zbutton.diy01_ico_open, .ztree li span.zbutton.diy01_ico_close, .ztree li span.zbutton.diy01_ico_docu{width:19px!important;height:27px!important;padding-top:0;}
+</style>
+<script type="text/javascript">
+	var zNodes =[
+		{ id:3002, parentId:0, name:"表格模板",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:201, parentId:3002, name:"页面中的grid表格",url:"../../sample_skin/normal/grid-page.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:202, parentId:3002, name:"弹窗中的grid表格",url:"../../sample_skin/normal/grid-pop.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:203, parentId:3002, name:"页面中的table表格",url:"../../sample_skin/normal/table-page2.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:204, parentId:3002, name:"弹窗中的table表格",url:"../../sample_skin/normal/table-pop.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		
+		{ id:3001, parentId:0, name:"表单模板",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:101, parentId:3001, name:"页面中的表单",url:"../../sample_skin/normal/form-page.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:102, parentId:3001, name:"弹窗中的表单",url:"../../sample_skin/normal/form-pop.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		
+		{ id:3003, parentId:0, name:"选项卡模板",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:301, parentId:3003, name:"页面中的选项卡",url:"../../sample_skin/normal/tab-page.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:302, parentId:3003, name:"弹窗中的选项卡",url:"../../sample_skin/normal/tab-pop.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		
+		{ id:3004, parentId:0, name:"布局模板",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:401, parentId:3004, name:"单级纵向导航",url:"../../sample_skin/normal/nav-single.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:402, parentId:3004, name:"双级纵向导航",url:"../../sample_skin/normal/nav-double.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:403, parentId:3004, name:"分隔条",url:"../../sample_skin/normal/spliter.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		
+		{ id:3005, parentId:0, name:"图片模板",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:501, parentId:3005, name:"图片列表",url:"../../sample_skin/normal/pic-list.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		
+		
+		{ id:3006, parentId:0, name:"情景模板",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:601, parentId:3006, name:"机构维护",url:"../../sample_skin/normal/org-management.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:602, parentId:3006, name:"用户管理",url:"../../sample_skin/normal/user-management.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:603, parentId:3006, name:"角色管理",url:"../../sample_skin/normal/role-management.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:604, parentId:3006, name:"资源分配(按用户)",url:"../../sample_skin/normal/user-assignment.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:605, parentId:3006, name:"资源分配(按角色)",url:"../../sample_skin/normal/role-assignment.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:606, parentId:3006, name:"综合box容器布局",url:"../../sample_skin/normal/layout-box.html", target:"frmright",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		
+		{ id:3007, parentId:0, name:"多级示例",iconOpen:"skin/titlebar_arrow_up.png",iconClose:"skin/titlebar_arrow_down.png",icon:"skin/titlebar_arrow_right.png",iconSkin:"diy01"},
+		{ id:701, parentId:3007, name:"第二级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:702, parentId:3007, name:"第二级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:703, parentId:3007, name:"第二级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:704, parentId:703, name:"第三级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:705, parentId:703, name:"第三级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:706, parentId:705, name:"第四级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:707, parentId:705, name:"第四级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"},
+		{ id:708, parentId:707, name:"第五级节点",iconOpen:"../../libs/icons/tree_close.gif",iconClose:"../../libs/icons/tree_open.gif",icon:"skin/titlebar_arrow.gif"}
+	];
+</script>
+</head>
+
+<body leftFrame="true">
+	<div>
+		<ul id="treeDemo" class="ztree ztree_accordition"></ul>
+	</div>				
+</body>
+</html>

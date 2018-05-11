@@ -25,8 +25,8 @@
                     port="${dubbo.service.provider.port}"
                     threadpool="cached"
                     accesslog="${dubbo.protocol.accesslog}"/>
-    <dubbo:provider threads="200"  version="1.0.0" timeout="30000"/>
-    <dubbo:consumer check = "false" version="1.0.0" timeout="30000"/>
+    <dubbo:provider threads="200"  version="1.0.0" timeout="12000000"/>
+    <dubbo:consumer check = "false" version="1.0.0" timeout="12000000"/>
     <dubbo:monitor protocol="registry" />
     <bean class="com.huasisoft.search.annotation.AnnotationBean">
         <constructor-arg name="annotationPackage" type="java.lang.String" value="com.huasisoft.search.**.serviceImpl" />

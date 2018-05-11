@@ -17,19 +17,13 @@
 	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.1.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="search_consumer_1" />
-    <dubbo:registry protocol="zookeeper"
-                    address="192.168.190.101:2181,192.168.190.102:2181,192.168.190.105:2181"
-                    file="d:/dubbo/cache/dubbo-consumer.cache"/>
-    <dubbo:protocol name="dubbo"
-                    port="20882"
-                    threadpool="cached"
-                    accesslog="d:/dubbo/logs/dubbo-consumer.log"/>
-    <dubbo:provider threads="200"  version="1.0.0" timeout="30000" />
-    <dubbo:consumer check = "false" registry="0" version="1.0.0" timeout="30000" />
-    <!--<dubbo:monitor protocol="registry" />-->
+    <dubbo:application name="hae_consumer_1"></dubbo:application>
+    <dubbo:registry address="zookeeper://10.0.0.32:2185?client=zkclient"/>
+    <dubbo:protocol name="dubbo" port="20882" ></dubbo:protocol>
+    <dubbo:provider threads="200"  version="1.0.0" timeout="12000000" />
+    <dubbo:consumer check = "false" version="1.0.0"  timeout="12000000" />
+    <dubbo:monitor protocol="registry" />
     <bean class="com.huasisoft.search.annotation.AnnotationBean">
-        <constructor-arg name="annotationPackage" type="java.lang.String" value="com.huasisoft.search.**.serviceImpl" />
+        <constructor-arg name="annotationPackage" type="java.lang.String" value="com.huasisoft.search.**.web" />
     </bean>
-
 </beans>

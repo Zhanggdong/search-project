@@ -7,11 +7,12 @@
   <groupId>com.huasisoft.search</groupId>
   <artifactId>search-project</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.0</version>
+  <version>5.0.0</version>
   <modules>
     <module>search-service</module>
     <module>search-api</module>
     <module>search-web</module>
+    <module>search-facade</module>
   </modules>
 
   <name>search-project</name>
@@ -35,14 +36,20 @@
     <!--<ik.version>5.6.4</ik.version>-->
     <spring-kafka.version>1.2.0.RELEASE</spring-kafka.version>
     <kafka-clients.version>0.10.2.0</kafka-clients.version>
-    <redis.version>2.9.0</redis.version>
-    <spring.redis.version>1.8.4.RELEASE</spring.redis.version>
+    <spring-mongo.version>1.7.1.RELEASE</spring-mongo.version>
+   <!-- <redis.version>2.9.0</redis.version>
+    <spring.redis.version>1.8.4.RELEASE</spring.redis.version>-->
   </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>com.huasisoft.search</groupId>
         <artifactId>search-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.huasisoft.search</groupId>
+        <artifactId>search-facade</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -144,7 +151,34 @@
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
       </dependency>
-
+      <!-- Spring data mongodb -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-mongodb</artifactId>
+        <version>${spring-mongo.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>spring-context</artifactId>
+            <groupId>org.springframework</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>spring-tx</artifactId>
+            <groupId>org.springframework</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>spring-expression</artifactId>
+            <groupId>org.springframework</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>spring-beans</artifactId>
+            <groupId>org.springframework</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>spring-core</artifactId>
+            <groupId>org.springframework</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
       <!-- Jackson-->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -185,11 +219,15 @@
         <artifactId>transport</artifactId>
         <version>${elasticsearch.version}</version>
       </dependency>
+  <!--    <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>x-pack-transport</artifactId>
+        <version>5.6.3</version>
+      </dependency>-->
     <!--  <dependency>
-        <groupId>org.elasticsearch</groupId>
-        <artifactId>elasticsearch-analysis-ik</artifactId>
-        <version>${ik.version}</version>
-        <classifier>zip</classifier>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${elasticsearch.version}</version>
       </dependency>-->
       <dependency>
         <groupId>org.apache.kafka</groupId>
@@ -201,14 +239,14 @@
         <artifactId>spring-kafka</artifactId>
         <version>${spring-kafka.version}</version>
       </dependency>
-
+      <!-- zookeeper -->
       <dependency>
         <groupId>com.github.sgroschupf</groupId>
         <artifactId>zkclient</artifactId>
         <version>0.1</version>
       </dependency>
       <!-- redis -->
-      <dependency>
+     <!-- <dependency>
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
         <version>${redis.version}</version>
@@ -217,7 +255,7 @@
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-redis</artifactId>
         <version>${spring.redis.version}</version>
-      </dependency>
+      </dependency>-->
       <!-- log -->
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -364,7 +402,6 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-
     <repository>
       <id>thirdparty</id>
       <name>3rd party</name>

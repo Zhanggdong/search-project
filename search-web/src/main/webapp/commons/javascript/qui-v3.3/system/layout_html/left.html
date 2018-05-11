@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../" scrollerY="false"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 树start-->
+<script type="text/javascript" src="../../libs/js/tree/ztree/ztree.js"></script>
+<link href="../../libs/js/tree/ztree/ztree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+    var setting = {
+        callback: {
+            onClick: onClick
+        }
+    };
+
+
+    var zNodes = [
+
+		{ id:3000, parentId:0, name:"常用资源索引"},
+		{ id:002, parentId:3000, name:"CSS库索引",url:"../../sample_html/index/css.html", target:"frmright"},
+		{ id:003, parentId:3000, name:"小图标索引",url:"../../sample_html/index/icons.html", target:"frmright"},
+		{ id:004, parentId:3000, name:"中图标索引",url:"../../sample_html/index/icons-m.html", target:"frmright"},
+		{ id:005, parentId:3000, name:"大图标索引-1",url:"../../sample_html/index/icons-l-1.html", target:"frmright"},
+		{ id:006, parentId:3000, name:"大图标索引-2",url:"../../sample_html/index/icons-l-2.html", target:"frmright"},
+		{ id:007, parentId:3000, name:"大图标索引-3",url:"../../sample_html/index/icons-l-3.html", target:"frmright"},
+		
+		{ id:3001, parentId:0, name:"多功能容器"},
+		{ id:101, parentId:3001, name:"box1",url:"../../sample_html/box/box1.html", target:"frmright" ,title:"box1"},
+		{ id:102, parentId:3001, name:"box2",url:"../../sample_html/box/box2.html", target:"frmright", title:"box2"},
+		
+		{ id:3002, parentId:0, name:"提示类组件"},
+		{ id:201, parentId:3002, name:"鼠标提示",url:"../../sample_html/popup/tooltip.html", target:"frmright",title:"title"},
+		{ id:202, parentId:3002, name:"弹窗",url:"../../sample_html/popup/window.html", target:"frmright",title:"Dialog"},
+		{ id:203, parentId:3002, name:"浮动面板",url:"../../sample_html/popup/floating.html", target:"frmright",title:"floatPanel"},
+		{ id:204, parentId:3002, name:"展出式提示框",url:"../../sample_html/popup/messager.html", target:"frmright",title:"messager"},
+		
+		{ id:3003, parentId:0, name:"树组件*"},
+		{ id:301, parentId:3003, name:"基本使用*",url:"../../sample_html/tree/basic.html", target:"frmright",title:"基本使用"},
+		{ id:302, parentId:3003, name:"异步加载数据*",url:"../../sample_html/tree/async.html", target:"frmright",title:"异步加载数据"},
+		{ id:303, parentId:3003, name:"添加复选框",url:"../../sample_html/tree/checktree.html", target:"frmright",title:"添加复选框"},
+		{ id:304, parentId:3003, name:"树的拖拽",url:"../../sample_html/tree/dragdrop.html", target:"frmright",title:"树的拖拽"},
+		{ id:305, parentId:3003, name:"树其他DOM节点拖拽",url:"../../sample_html/tree/dragdrop-other.html", target:"frmright",title:"树其他DOM节点拖拽"},
+		{ id:306, parentId:3003, name:"树的编辑",url:"../../sample_html/tree/edit.html", target:"frmright",title:"树的编辑"},
+		{ id:307, parentId:3003, name:"右键菜单",url:"../../sample_html/tree/contextmenu.html", target:"frmright",title:"右键菜单"},
+		{ id:308, parentId:3003, name:"自定义外观",url:"../../sample_html/tree/style-custom.html", target:"frmright",title:"自定义外观"},
+		{ id:309, parentId:3003, name:"添加自定义控件",url:"../../sample_html/tree/diy-dom.html", target:"frmright",title:"添加自定义控件"},
+		{ id:310, parentId:3003, name:"节点隐藏",url:"../../sample_html/tree/node-hide.html", target:"frmright",title:"节点隐藏"},
+		{ id:311, parentId:3003, name:"树的分页",url:"../../sample_html/tree/page.html", target:"frmright",title:"树的分页"},
+		
+		{ id:3004, parentId:0, name:"表单元素*"},
+		{ id:401, parentId:3004, name:"文本框",url:"../../sample_html/form/textinput-password.html", target:"frmright",title:"textinput/password"},
+		{ id:402, parentId:3004, name:"文本域",url:"../../sample_html/form/textarea.html", target:"frmright",title:"textarea"},
+		{ id:403, parentId:3004, name:"基本按钮",url:"../../sample_html/form/button.html", target:"frmright",title:"button"},
+		{ id:404, parentId:3004, name:"单选按钮",url:"../../sample_html/form/radio.html", target:"frmright",title:"radio"},
+		{ id:405, parentId:3004, name:"多选按钮",url:"../../sample_html/form/checkbox.html", target:"frmright",title:"checkbox"},
+		{ id:406, parentId:3004, name:"单选下拉框*",url:"../../sample_html/form/select-single.html", target:"frmright",title:"select"},
+		{ id:422, parentId:3004, name:"过滤下拉框*",url:"../../sample_html/form/select-suggestion.html", target:"frmright",title:"selectSuggestion"},
+		{ id:407, parentId:3004, name:"树形下拉框*",url:"../../sample_html/form/select-tree.html", target:"frmright",title:"selectTree"},
+		{ id:408, parentId:3004, name:"多选下拉框*",url:"../../sample_html/form/select-multi.html", target:"frmright",title:"selectTree multi"},
+		{ id:409, parentId:3004, name:"组合下拉框*",url:"../../sample_html/form/select-custom.html", target:"frmright",title:"selectCustom"},
+		{ id:410, parentId:3004, name:"自动提示框*",url:"../../sample_html/form/suggestion.html", target:"frmright",title:"suggestion"},
+		{ id:411, parentId:3004, name:"日期选择器",url:"../../sample_html/form/date.html", target:"frmright",title:"date"},
+		{ id:412, parentId:3004, name:"双向选择器*",url:"../../sample_html/form/lister.html", target:"frmright",title:"lister"},
+		{ id:413, parentId:3004, name:"树形双选器*",url:"../../sample_html/form/lister-tree.html", target:"frmright",title:"listerTree"},
+		{ id:415, parentId:3004, name:"颜色选择器",url:"../../sample_html/form/color.html", target:"frmright",title:"color"},
+		{ id:416, parentId:3004, name:"数字步进器",url:"../../sample_html/form/stepper.html", target:"frmright",title:"stepter"},
+		{ id:417, parentId:3004, name:"软键盘控件",url:"../../sample_html/form/keypad.html", target:"frmright",title:"keypad"},
+		{ id:418, parentId:3004, name:"评星级控件",url:"../../sample_html/form/rating.html", target:"frmright",title:"rating"},
+		{ id:419, parentId:3004, name:"异步上传控件*",url:"../../sample_html/form/fileupload.html", target:"frmright",title:"fileUpload"},
+		{ id:420, parentId:3004, name:"上传文件列表*",url:"../../sample_html/form/filelist.html", target:"frmright",title:"fileList"},
+		{ id:421, parentId:3004, name:"同步上传控件*",url:"../../sample_html/form/file.html", target:"frmright",title:"file"},
+		{ id:414, parentId:3004, name:"条件过滤器1*",url:"../../sample_html/form/filter.html", target:"frmright",title:"filter"},
+		{ id:423, parentId:3004, name:"条件过滤器1-综合",url:"../../sample_html/form/filter-demo.html", target:"frmright",title:"filter"},
+		{ id:424, parentId:3004, name:"条件过滤器2",url:"../../sample_html/form/condition.html", target:"frmright",title:"condition"},
+		{ id:425, parentId:3004, name:"条件过滤器2-综合",url:"../../sample_html/form/condition-demo.html", target:"frmright",title:"condition"},
+		{ id:426, parentId:3004, name:"条件过滤器3",url:"../../sample_html/form/condition-nav.html", target:"frmright",title:"conditionNav"},
+		{ id:427, parentId:3004, name:"条件过滤器3-综合",url:"../../sample_html/form/condition-nav-demo.html", target:"frmright",title:"conditionNav"},
+		{ id:428, parentId:3004, name:"条件过滤器4-综合",url:"../../sample_html/form/condition-complex.html", target:"frmright",title:"complexConditon"},
+		
+		
+		{ id:3005, parentId:0, name:"综合表单*"},
+		{ id:501, parentId:3005, name:"表单布局",url:"../../sample_html/fullform/layout.html", target:"frmright",title:"table"},
+		{ id:502, parentId:3005, name:"表单验证*",url:"../../sample_html/fullform/validation.html", target:"frmright",title:"validation"},
+		{ id:512, parentId:3005, name:"表单验证-直接提示*",url:"../../sample_html/fullform/validation2.html", target:"frmright",title:"validation"},
+		{ id:513, parentId:3005, name:"表单响应式布局",url:"../../sample_html/fullform/layout-auto.html", target:"frmright",title:"formLayout"},
+		{ id:503, parentId:3005, name:"表单拆分",url:"../../sample_html/fullform/step.html", target:"frmright",title:"stepForm"},
+		{ id:504, parentId:3005, name:"同步提交*",url:"../../sample_html/fullform/submit.html", target:"frmright"},
+		{ id:505, parentId:3005, name:"同步编辑*",url:"../../sample_html/fullform/edit.html", target:"frmright"},
+		{ id:506, parentId:3005, name:"异步提交*",url:"../../sample_html/fullform/submit-ajax.html", target:"frmright"},
+		{ id:507, parentId:3005, name:"异步弹窗提交",url:"../../sample_html/fullform/submit-ajax-pop.html", target:"frmright"},
+		{ id:508, parentId:3005, name:"异步编辑-标签赋值*",url:"../../sample_html/fullform/edit-ajax-tag.html", target:"frmright"},
+		{ id:509, parentId:3005, name:"异步编辑-非标签赋值*",url:"../../sample_html/fullform/edit-ajax-notag.html", target:"frmright"},
+		{ id:510, parentId:3005, name:"动态创建表单并赋值",url:"../../sample_html/fullform/create-form.html", target:"frmright"},
+		{ id:511, parentId:3005, name:"大量表单元素方案",url:"../../sample_html/fullform/large-elements.html", target:"frmright"},
+		
+		{ id:3006, parentId:0, name:"grid表格*"},
+		{ id:601, parentId:3006, name:"使用url*",url:"../../sample_html/datagrid/basic-url.html", target:"frmright"},
+		{ id:602, parentId:3006, name:"使用远程data*",url:"../../sample_html/datagrid/basic-data.html", target:"frmright"},
+		{ id:603, parentId:3006, name:"使用本地数据",url:"../../sample_html/datagrid/basic-local.html", target:"frmright"},
+		{ id:604, parentId:3006, name:"对行列渲染",url:"../../sample_html/datagrid/render.html", target:"frmright"},
+		{ id:605, parentId:3006, name:"锁定列",url:"../../sample_html/datagrid/lock.html", target:"frmright"},
+		{ id:606, parentId:3006, name:"多表头支持",url:"../../sample_html/datagrid/multiheader.html", target:"frmright"},
+		{ id:607, parentId:3006, name:"弹窗中的表格",url:"../../sample_html/datagrid/basic-pop.html", target:"frmright"},
+		{ id:608, parentId:3006, name:"表格动态操作",url:"../../sample_html/datagrid/dynamic.html", target:"frmright"},
+		{ id:609, parentId:3006, name:"内容格式化",url:"../../sample_html/datagrid/format.html", target:"frmright"},
+		{ id:610, parentId:3006, name:"动态选中",url:"../../sample_html/datagrid/checkrows.html", target:"frmright"},
+		{ id:611, parentId:3006, name:"选中项分页记忆",url:"../../sample_html/datagrid/checkrows-memory.html", target:"frmright"},
+		{ id:612, parentId:3006, name:"动态切换表格",url:"../../sample_html/datagrid/change-grid.html", target:"frmright"},
+		{ id:613, parentId:3006, name:"动态设置url*",url:"../../sample_html/datagrid/seturl.html", target:"frmright"},
+		{ id:614, parentId:3006, name:"滚动条位置",url:"../../sample_html/datagrid/scroll-to.html", target:"frmright"},
+		{ id:615, parentId:3006, name:"滚动到特定行",url:"../../sample_html/datagrid/scroll-to-row.html", target:"frmright"},
+		{ id:616, parentId:3006, name:"工具栏控制",url:"../../sample_html/datagrid/toolbar.html", target:"frmright"},
+		{ id:617, parentId:3006, name:"表格右键菜单",url:"../../sample_html/datagrid/context-menu.html", target:"frmright"},
+		{ id:618, parentId:3006, name:"自定义样式",url:"../../sample_html/datagrid/custom-style.html", target:"frmright"},
+		{ id:619, parentId:3006, name:"跨列附加行",url:"../../sample_html/datagrid/append-row.html", target:"frmright"},
+		{ id:620, parentId:3006, name:"单元格信息提示",url:"../../sample_html/datagrid/cell-tip.html", target:"frmright"},
+		{ id:621, parentId:3006, name:"不显示表头",url:"../../sample_html/datagrid/noheader.html", target:"frmright"},
+		{ id:622, parentId:3006, name:"表格双选器(小型)*",url:"../../sample_html/datagrid/lister-grid.html", target:"frmright",title:"listerGrid"},
+		{ id:623, parentId:3006, name:"表格双选器(左右满屏)*",url:"../../sample_html/datagrid/lister-grid2.html", target:"frmright",title:"listerGrid"},
+		{ id:624, parentId:3006, name:"表格双选器(上下满屏)*",url:"../../sample_html/datagrid/lister-grid3.html", target:"frmright",title:"listerGrid"},
+		{ id:625, parentId:3006, name:"树形表格*",url:"../../sample_html/datagrid/treegrid.html", target:"frmright"},
+		{ id:626, parentId:3006, name:"树形表格-个性设置",url:"../../sample_html/datagrid/treegrid-dynamic.html", target:"frmright"},
+		{ id:627, parentId:3006, name:"树形表格-异步加载*",url:"../../sample_html/datagrid/treegrid-ajax.html", target:"frmright"},
+		{ id:628, parentId:3006, name:"父子表格*",url:"../../sample_html/datagrid/detailgrid.html", target:"frmright"},
+		{ id:629, parentId:3006, name:"父子表格-操作子表*",url:"../../sample_html/datagrid/detailgrid-edit.html", target:"frmright"},
+		{ id:630, parentId:3006, name:"展开自定义内容",url:"../../sample_html/datagrid/detailgrid-custom.html", target:"frmright"},
+		{ id:631, parentId:3006, name:"分组表格",url:"../../sample_html/datagrid/group.html", target:"frmright"},
+		{ id:635, parentId:3006, name:"分组表格-宽度自适应",url:"../../sample_html/datagrid/group-autowidth.html", target:"frmright"},
+		{ id:632, parentId:3006, name:"数据汇总",url:"../../sample_html/datagrid/summary.html", target:"frmright"},
+		{ id:633, parentId:3006, name:"表格分组+汇总",url:"../../sample_html/datagrid/group-summary.html", target:"frmright"},
+		{ id:634, parentId:3006, name:"大数据测试",url:"../../sample_html/datagrid/large-data.html", target:"frmright"},
+		
+		
+		
+		{ id:3007, parentId:0, name:"table表格*"},
+		{ id:701, parentId:3007, name:"特性举例",url:"../../sample_html/table/guide.html", target:"frmright"},
+		{ id:702, parentId:3007, name:"基本表格模板*",url:"../../sample_html/table/basic.html", target:"frmright"},
+		{ id:703, parentId:3007, name:"含横向滚动条",url:"../../sample_html/table/scroll.html", target:"frmright"},
+		{ id:704, parentId:3007, name:"多表头支持",url:"../../sample_html/table/multiheader.html", target:"frmright"},
+		{ id:705, parentId:3007, name:"弹窗中的表格",url:"../../sample_html/table/basic-pop.html", target:"frmright"},
+		{ id:706, parentId:3007, name:"表格动态操作",url:"../../sample_html/table/dynamic.html", target:"frmright"},
+		{ id:707, parentId:3007, name:"单元格信息提示",url:"../../sample_html/table/tip.html", target:"frmright"},
+		{ id:708, parentId:3007, name:"树形表格*",url:"../../sample_html/table/treetable.html", target:"frmright"},
+		{ id:709, parentId:3007, name:"父子表格*",url:"../../sample_html/table/detailtable.html", target:"frmright"},
+		{ id:710, parentId:3007, name:"列表性能优化方案",url:"../../sample_html/table/improve.html", target:"frmright"},
+		
+		{ id:3008, parentId:0, name:"导航组件"},
+		{ id:801, parentId:3008, name:"弹出菜单",url:"../../sample_html/nav/menu-popup.html", target:"frmright"},
+		{ id:802, parentId:3008, name:"右键菜单",url:"../../sample_html/nav/menu-rightclick.html", target:"frmright"},
+		{ id:803, parentId:3008, name:"个性化菜单(篮子)",url:"../../sample_html/nav/menu-basket.html", target:"frmright"},
+		{ id:804, parentId:3008, name:"个性化菜单(鱼眼)",url:"../../sample_html/nav/menu-fisheye.html", target:"frmright"},
+		{ id:805, parentId:3008, name:"基本选项卡",url:"../../sample_html/nav/tab-basic.html", target:"frmright"},
+		{ id:822, parentId:3008, name:"基本选项卡-样式2",url:"../../sample_html/nav/tab-basic-modern.html", target:"frmright"},
+		{ id:815, parentId:3008, name:"基本选项卡-流程",url:"../../sample_html/nav/tab-basic-process.html", target:"frmright"},
+		{ id:816, parentId:3008, name:"静态流程导航",url:"../../sample_html/nav/staic-process.html", target:"frmright"},
+		{ id:806, parentId:3008, name:"动态选项卡",url:"../../sample_html/nav/tab-dynamic.html", target:"frmright"},
+		{ id:807, parentId:3008, name:"抽屉容器",url:"../../sample_html/nav/accordion.html", target:"frmright"},
+		{ id:808, parentId:3008, name:"当前位置",url:"../../sample_html/nav/position.html", target:"frmright"},
+		{ id:809, parentId:3008, name:"图标导航",url:"../../sample_html/nav/icon-nav.html", target:"frmright"},
+		{ id:810, parentId:3008, name:"图标工具箱",url:"../../sample_html/nav/icon-toolbox.html", target:"frmright"},
+		{ id:811, parentId:3008, name:"图标工具栏",url:"../../sample_html/nav/icon-toolbar.html", target:"frmright"},
+		{ id:812, parentId:3008, name:"数字分页控件",url:"../../sample_html/nav/paging-number.html", target:"frmright"},
+		{ id:813, parentId:3008, name:"箭头分页控件",url:"../../sample_html/nav/paging-arrow.html", target:"frmright"},
+		{ id:814, parentId:3008, name:"分隔条组件",url:"../../sample_html/nav/spliter-part.html", target:"frmright"},
+		
+		
+		
+		{ id:3009, parentId:0, name:"图片特效", isParent: true},
+		{ id:901, parentId:3009, name:"图片标题特效",url:"../../sample_html/pic/title.html", target:"frmright"},
+		{ id:902, parentId:3009, name:"图片列表特效",url:"../../sample_html/pic/list.html", target:"frmright"},
+		{ id:903, parentId:3009, name:"图片预览", url:"../../sample_html/pic/preview.html",target:"frmright"},
+		{ id:904, parentId:3009, name:"图片滚动", url:"../../sample_html/pic/scroll.html", target:"frmright"},
+		{ id:905, parentId:3009, name:"图片滚动(可控)", url:"../../sample_html/pic/scroll-control.html", target:"frmright"},
+		{ id:906, parentId:3009, name:"单图边框", url:"../../sample_html/pic/frame.html",target:"frmright"},
+		{ id:907, parentId:3009, name:"单图区域放大", url:"../../sample_html/pic/zoom.html", target:"frmright"},
+		{ id:908, parentId:3009, name:"图片幻灯", url:"../../sample_html/pic/slider.html", target:"frmright"},
+		
+		{ id:3010, parentId:0, name:"文本特效", isParent: true},
+		{ id:1001, parentId:3010, name:"文本截取", url:"../../sample_html/text/slice.html", target:"frmright"},
+		{ id:1003, parentId:3010, name:"文章列表", url:"../../sample_html/text/list.html" ,target:"frmright"},
+		{ id:1004, parentId:3010, name:"文本变色", url:"../../sample_html/text/color.html" ,target:"frmright"},
+		{ id:1005, parentId:3010, name:"文本滚动", url:"../../sample_html/text/scroll.html", target:"frmright"},
+		{ id:1006, parentId:3010, name:"监听文字改变", url:"../../sample_html/text/watch.html",target:"frmright"},
+		
+		{ id:3015, parentId:0, name:"拖拽特效", isParent: true},
+		{ id:1501, parentId:3015, name:"拖拽改变尺寸", url:"../../sample_html/drag/drag-resize.html", target:"frmright"},
+		{ id:1502, parentId:3015, name:"拖拽移动", url:"../../sample_html/drag/drag-move.html", target:"frmright"},
+		{ id:1503, parentId:3015, name:"拖放与接收", url:"../../sample_html/drag/drag-drop.html", target:"frmright"},
+		{ id:1504, parentId:3015, name:"拖拽排序", url:"../../sample_html/drag/drag-sort.html", target:"frmright"},
+		
+		{ id:3011, parentId:0, name:"其他特效", isParent: true},
+		{ id:1101, parentId:3011, name:"设为主页与加入收藏",url:"../../sample_html/other/sethome.html", target:"frmright"},
+		{ id:1102, parentId:3011, name:"多视图切换(横纵向)", url:"../../sample_html/other/multiview.html", target:"frmright"},
+		{ id:1103, parentId:3011, name:"多视图切换(纵向)", url:"../../sample_html/other/multiview2.html", target:"frmright"},
+		{ id:1104, parentId:3011, name:"多视图切换(横向)", url:"../../sample_html/other/multiview3.html", target:"frmright"},
+		{ id:1105, parentId:3011, name:"平滑锚点链接", url:"../../sample_html/other/smoothlink.html", target:"frmright"},
+		{ id:1106, parentId:3011, name:"遮罩", url:"../../sample_html/other/mask.html", target:"frmright"},
+		{ id:1107, parentId:3011, name:"真实进度条", url:"../../sample_html/other/progressbar.html", target:"frmright"},
+		
+		
+
+		{ id:3012, parentId:0, name:"常用布局模板", isParent: true},
+		{ id:1201, parentId:3012, name:"纵向导航(滑动)",url:"../../sample_html/layout/nav-single-scroll-v.html", target:"frmright"},
+		{ id:1202, parentId:3012, name:"纵向导航(链接)",url:"../../sample_html/layout/nav-single-min.html", target:"frmright"},
+		{ id:1203, parentId:3012, name:"纵向导航(宽菜单)",url:"../../sample_html/layout/nav-single.html", target:"frmright"},
+		{ id:1204, parentId:3012, name:"纵向导航(列表)",url:"../../sample_html/layout/nav-double-list.html", target:"frmright"},
+		{ id:1205, parentId:3012, name:"纵向导航(分组列表)",url:"../../sample_html/layout/nav-double-group.html", target:"frmright"},
+
+		{ id:1206, parentId:3012, name:"横向导航(滑动)",url:"../../sample_html/layout/nav-single-scroll-h.html", target:"frmright"},
+		{ id:1207, parentId:3012, name:"横向导航(基本选项卡)",url:"../../sample_html/layout/layout-htab.html", target:"frmright"},
+		{ id:1208, parentId:3012, name:"横向导航(tab含表格)",url:"../../sample_html/layout/tab-grid.html", target:"frmright"},
+		{ id:1209, parentId:3012, name:"横向导航(流程选项卡)",url:"../../sample_html/layout/tab-process.html", target:"frmright"},
+		{ id:1210, parentId:3012, name:"横向导航(静态流程)",url:"../../sample_html/layout/page-process.html", target:"frmright"},
+		{ id:1211, parentId:3012, name:"横向动态tab(点击树)",url:"../../sample_html/layout/layout-hvtab-dynamic.html", target:"frmright"},
+		{ id:1212, parentId:3012, name:"横向动态tab(点击表格行)",url:"../../sample_html/layout/grid-addtab.html", target:"frmright"},
+		{ id:1213, parentId:3012, name:"横纵向tab",url:"../../sample_html/layout/layout-hvtab.html", target:"frmright"},
+		
+		{ id:1214, parentId:3012, name:"分隔条布局(左右)",url:"../../sample_html/layout/spliter-h.html", target:"frmright"},
+		{ id:1215, parentId:3012, name:"分隔条布局(上下)",url:"../../sample_html/layout/spliter-v.html", target:"frmright"},
+		{ id:1216, parentId:3012, name:"分隔条布局(综合)",url:"../../sample_html/layout/spliter-full.html", target:"frmright"},
+		{ id:1217, parentId:3012, name:"分隔条布局(弹窗)",url:"../../sample_html/layout/popup-nav.html", target:"frmright"},
+		
+		
+		{ id:1218, parentId:3012, name:"主页模板(静态欢迎)",url:"../../sample_html/layout/open.html", target:"frmright"},
+		{ id:1219, parentId:3012, name:"主页模板(9宫格)",url:"../../sample_html/layout/icon-nav.html", target:"frmright"},
+		{ id:1220, parentId:3012, name:"主页模板(操作向导)",url:"../../sample_html/layout/open-process.html", target:"frmright"},
+		{ id:1221, parentId:3012, name:"主页模板(信息栏目1)",url:"../../sample_html/layout/section1.html", target:"frmright"},
+		{ id:1222, parentId:3012, name:"主页模板(信息栏目2)",url:"../../sample_html/layout/section2.html", target:"frmright"},
+		{ id:1223, parentId:3012, name:"主页模板(信息栏目3)",url:"../../sample_html/layout/section3.html", target:"frmright"},
+		{ id:1224, parentId:3012, name:"提示模板(404)",url:"../../sample_html/layout/404.html", target:"frmright"},
+		{ id:1225, parentId:3012, name:"提示模板(操作结果)",url:"../../sample_html/layout/result.html", target:"frmright"},
+		{ id:1239, parentId:3012, name:"提示模板(用户卡片)",url:"../../sample_html/layout/card.html", target:"frmright"},
+		
+		
+		{ id:1228, parentId:3012, name:"多iframe(局部滚动)",url:"../../sample_html/layout/layout-multiarea1.html", target:"frmright"},
+		{ id:1229, parentId:3012, name:"多iframe(整体滚动)",url:"../../sample_html/layout/layout-multiarea2.html", target:"frmright"},
+		{ id:1230, parentId:3012, name:"综合box容器布局",url:"../../sample_html/layout/layout-box.html", target:"frmright"},
+		
+		
+		{ id:1231, parentId:3012, name:"资源维护",url:"../../sample_html/layout/nav-management.html", target:"frmright"},
+		{ id:1232, parentId:3012, name:"机构维护",url:"../../sample_html/layout/org-management.html", target:"frmright"},
+		{ id:1233, parentId:3012, name:"用户管理",url:"../../sample_html/layout/user-management.html", target:"frmright"},
+		{ id:1234, parentId:3012, name:"角色管理",url:"../../sample_html/layout/role-management.html", target:"frmright"},
+		{ id:1235, parentId:3012, name:"资源分配(按用户)",url:"../../sample_html/layout/user-assignment.html", target:"frmright"},
+		{ id:1236, parentId:3012, name:"资源分配(按角色)",url:"../../sample_html/layout/role-assignment.html", target:"frmright"},
+		
+		{ id:1237, parentId:3012, name:"新窗口打开页面(分离模式)",url:"../../sample_html/split/split-index.html", target:"frmright"},
+		{ id:1238, parentId:3012, name:"框架右侧嵌入第三方页面",url:"http://www.baidu.com", target:"frmright",showProgess:false}
+
+	];
+
+    function initComplete() {
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        //每次刷新时保持上次打开的
+        showContent();
+    }
+    function showContent() {
+        var treeNodeId = jQuery.jCookie('leftTreeNodeId');
+        if (treeNodeId == false || treeNodeId == "false") { }
+        else {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            var node = zTree.getNodeByParam("id", treeNodeId);
+            zTree.selectNode(node);
+            if (node.url) {
+                //每次刷新时设置当前位置内容
+               // if (node.name == "当前位置") {
+                    top.positionType = "normal";
+                    top.positionContent = "当前位置：" + node.getParentNode().name + ">>" + node.name;
+                //}
+                //else {
+                   // top.positionType = "none";
+               // }
+                top.frmright.location = node.url;
+            }
+        }
+    }
+
+    function onClick(e, treeId, treeNode) {
+        //单击展开
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.expandNode(treeNode);
+        //出现进度条
+        if (treeNode.url != null && treeNode.showProgess != false) {
+            showProgressBar();
+             top.positionContent = "当前位置：" + treeNode.getParentNode().name + ">>" + treeNode.name;
+            top.positionType = "normal";
+        }
+
+        //可以设置某些页面出现或者某些页面不出现当前位置组件
+        //if (treeNode.name == "当前位置") {
+            //每次点击时设置当前位置内容
+            //top.positionContent = "当前位置：" + treeNode.getParentNode().name + ">>" + treeNode.name;
+           // top.positionType = "normal";
+       // }
+       // else {
+            //top.positionType = "none";
+       // }
+
+        //存储点击节点id
+        jQuery.jCookie('leftTreeNodeId', treeNode.id.toString());
+    }
+
+    function showAll() {
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+        treeObj.expandAll(true);
+    }
+    function hideAll() {
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo")
+        treeObj.expandAll(false);
+    }
+    
+    function customHeightSet(contentHeight){
+		var windowWidth=document.documentElement.clientWidth;
+		$("#scrollContent").width(windowWidth-4);
+		$("#scrollContent").height(contentHeight-30);
+	}
+	function homeHandler(){
+		 var treeObj = $.fn.zTree.getZTreeObj("treeDemo")
+        treeObj.expandAll(false);
+		top.positionType="none";
+		jQuery.jCookie('leftTreeNodeId',"false");
+	}
+</script>
+<!-- 树end -->
+</head>
+
+<body leftFrame="true">
+<div class="padding_top5 ali02" style="height:30px;">
+	<a onclick="showAll()">全部展开</a>&nbsp;&nbsp;<a onclick="hideAll()">全部收缩</a>
+</div>
+
+<div id="scrollContent" style="overflow-x:hidden;">
+
+	<div>
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+		
+</div>				
+</body>
+</html>

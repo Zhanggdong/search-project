@@ -1,0 +1,219 @@
+
+.topTools{
+	left: 0px; width: 100%; 
+	height: 35px;
+	position: fixed; z-index: 299;
+	box-shadow: 0px 2px 0px rgba(0,0,0,0.12);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .12);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .12);
+	_position: relative;
+}
+.topTools,.topTools .topNav .topNavSub{
+	-moz-box-shadow:0 1px 2px rgba(23,87,117,0.5);
+	-webkit-box-shadow:0 1px 2px rgba(23,87,117,0.5);
+	box-shadow:0 1px 2px rgba(23,87,117,0.5)
+}
+.topTools .topNav a{ color:#fefefe}
+.topTools .tSearchNew{ border-color:#2b84a9}
+.topTools .topNav .active{ color:#fff}
+.topTools .topNav em{ border-top-color:#fefefe}
+.topTools .headShadow{
+	opacity:.9;
+	border-bottom:#CCCCCC 1px solid;
+	background:-webkit-gradient(linear,left top,left bottom,from(#45addd),to(#279cc8));
+	background:-moz-linear-gradient(top,#CCCCCC,#999999);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCCCCC',endColorstr='#999999');
+	background:-ms-linear-gradient(top,#CCCCCC,#999999);/*IE10*/
+}
+.topTools .topNav .topNavItem a:hover i,.topTools .topNav .topNavItem .active i{ background-color:#666666}
+.topTools .topNav .topNavSub{ background-color:#1084b2}
+.topTools .topNav .topNavSub a{ color:#fff}
+.topTools .topNav .topNavSub a:hover{background:#005c86}
+.topTools .topNav strong{ background-color:#0f87b6; color:#75c5eb}
+.topTools .topNav .newMsg strong{ background-color:#f56200; color:#fff}
+.topTools .topNav .topNavSub a{ color:#D0ECF7}
+.topTools .topNav .func,
+.topTools .topNav .topNavSub .hr { border-top-color:#005c86}
+.topTools .topNav .func div,
+.topTools .topNav .topNavSub .hr i { border-top-color:#1084b2}
+.topTools .topNav .topNavSub .desc,
+.topTools .topNav .topNavSub .tit {color:#fff}
+.topTools .topNav .topNavSub .desc a { background:none}
+.topTools a {
+	color: rgb(201, 201, 201);
+}
+.topTools a:hover {
+	text-decoration: none;
+}
+.headInside {
+	margin: 0px auto; width: 100%; height: 35px; position: relative; z-index: 104;
+}
+.headInside h1 {
+	left: 0px; top: 0px; position: absolute;
+}
+.headInside h1{
+	background: url("images/RiseSoft.png") no-repeat; width: 149px; height: 35px; text-indent: -9999em; overflow: hidden; display: block; _background: none; _cursor: pointer;
+}
+.topNav {
+	left: 155px; top: 0px; height: 35px; position: absolute;margin-right: 20px;
+}
+.topNav .topNavItem {
+	margin-right: 1px; float: left; position: relative;
+}
+.topNav a {
+	padding: 11px 0px 12px; height: 12px; line-height: 13px; overflow: hidden; font-size: 14px; display: block; _position: relative; _float: left; _cursor: pointer;
+}
+.topNav .active {
+	color: rgb(255, 255, 255);
+}
+.topNav .topNavItem u {
+	padding: 0px 10px; text-decoration: none; position: relative; z-index: 105;
+}
+.topNav .countItem u {
+	padding: 0px 3px 0px 5px;
+}
+.topNav .topNavItem a i {
+	left: 0px; top: 0px; width: 100%; height: 35px; display: block; position: absolute;
+}
+.topNav .topNavItem a:hover i {
+	opacity: 0.4; background-color: rgb(0, 0, 0);
+}
+.topNav .topNavItem .active i {
+	opacity: 0.4; background-color: rgb(0, 0, 0);
+}
+.topNav .countItem a {
+	color: rgb(201, 201, 201); font-size: 12px; font-weight: normal;
+}
+.topNav .accountItem a {
+	color: rgb(201, 201, 201); font-size: 12px; font-weight: normal;
+}
+.topNav .accountItem u {
+	padding: 0px 3px 0px 5px;
+}
+.topNav em {
+	vertical-align: top; display: inline-block;
+}
+.topNav strong {
+	vertical-align: top; display: inline-block;
+}
+.topNav em {
+	border-width: 3px 3px 0px; border-style: solid dashed dashed; border-color: rgb(201, 201, 201) transparent transparent; margin: 6px 0px 0px 3px; width: 0px; height: 0px; line-height: 0; font-size: 0px;
+}
+.topNav strong {
+	padding: 0px 3px; border-radius: 3px; height: 17px; text-align: center; color: rgb(187, 187, 187); line-height: 16px; font-weight: normal; margin-top: -2px; filter: alpha(opacity=55); min-width: 15px; opacity: 0.55; background-color: rgb(44, 44, 44); -moz-border-radius: 3px; -webkit-border-radius: 3px; _overflow: visible; _width: 15px;
+}
+.topNav .newMsg strong {
+	color: rgb(255, 255, 255); font-weight: bold; filter: alpha(opacity=100); min-width: 16px; opacity: 1; background-color: rgb(245, 98, 0); _width: 16px;
+}
+.headInside .right {
+	left: auto; right: 0px;
+}
+.topNav .topNavSub {
+	left: 0px; top: 35px; filter: alpha(opacity=90); position: absolute; min-width: 110px; opacity: 0.9; box-shadow: 0px 1px 2px rgba(0,0,0,0.5); background-color: rgb(26, 26, 26); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+.topNav .topNavSub ul {
+	width: 49.9%; float: left;
+}
+.topNav .topNavSub li {
+	width: 100%; overflow: hidden; white-space: nowrap;
+}
+.topNav .topNavSub a {
+	padding: 8px 9px 9px; color: rgb(201, 201, 201); font-size: 12px; float: none;
+}
+.topNav .topNavSub a:hover {
+	background: rgb(9, 9, 9);
+}
+.topNav .topNavSub .light a {
+	color: rgb(245, 98, 0) !important;
+}
+.topNav .topNavSub .light a:hover {
+	color: rgb(245, 98, 0) !important;
+}
+.topNav .topNavSub b {
+	color: rgb(245, 98, 0); font-weight: normal; margin-left: 2px;
+}
+.topNav .topNavSub b {
+	color: rgb(245, 98, 0); font-weight: normal; margin-left: 2px;
+}
+.topNav .func {
+	margin: 0px 11px; clear: both; border-top-color: rgb(0, 0, 0); border-top-width: 1px; border-top-style: solid;
+}
+.topNav .func div {
+	padding: 3px 0px 7px; border-top-color: rgb(64, 65, 65); border-top-width: 1px; border-top-style: solid;
+}
+.topNav .func a {
+	padding: 0px; line-height: 1.75; display: inline;
+}
+.topNav .func a:hover {
+	text-decoration: underline; background-color: transparent !important;
+}
+.topTools .topNav .apps .active {
+	color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .apps .active:hover {
+	color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .groups .active {
+	color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .groups .active:hover {
+	color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .apps .active i {
+	background: rgb(246, 246, 246) !important; border-radius: 3px 3px 0px 0px; top: 3px; height: 32px; filter: alpha(Opacity=100); opacity: 1;
+}
+.topTools .topNav .apps .active:hover i {
+	background: rgb(246, 246, 246) !important; border-radius: 3px 3px 0px 0px; top: 3px; height: 32px; filter: alpha(Opacity=100); opacity: 1;
+}
+.topTools .topNav .groups .active i {
+	background: rgb(246, 246, 246) !important; border-radius: 3px 3px 0px 0px; top: 3px; height: 32px; filter: alpha(Opacity=100); opacity: 1;
+}
+.topTools .topNav .groups .active:hover i {
+	background: rgb(246, 246, 246) !important; border-radius: 3px 3px 0px 0px; top: 3px; height: 32px; filter: alpha(Opacity=100); opacity: 1;
+}
+.topTools .topNav .apps .active em {
+	border-top-color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .apps .active:hover em {
+	border-top-color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .groups .active em {
+	border-top-color: rgb(85, 85, 85) !important;
+}
+.topTools .topNav .groups .active:hover em {
+	border-top-color: rgb(85, 85, 85) !important;
+}
+
+.headInside .hover .inputTxtNew {
+	background-position: -24px -24px;
+}
+.headInside .hover .inputBtn {
+	background-position: 0px -24px;
+}
+.headInside .hover .btn_ldrop em {
+	border-top-color: rgb(176, 176, 176);
+}
+.headInside .active .inputTxtNew {
+	background-position: -24px -48px;
+}
+.headInside .active .inputBtn {
+	background-position: 0px -48px;
+}
+.headInside .active .btn_ldrop em {
+	border-top-color: rgb(176, 176, 176);
+}
+.active .inputTxtNew {
+	color: rgb(51, 51, 51);
+}
+.headInside div.active {
+	overflow: hidden; filter: alpha(opacity=100); opacity: 1;
+}
+.headShadow {
+	top: 0px; width: 100%; height: 35px; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c2c2c',endColorstr='#191919'); position: absolute; z-index: 10; opacity: 0.8;
+}
+.topPadding {
+	padding-top: 35px; _padding-top: 15px;
+}
+.topPadding .whiteBg {
+	filter: none\9;
+}

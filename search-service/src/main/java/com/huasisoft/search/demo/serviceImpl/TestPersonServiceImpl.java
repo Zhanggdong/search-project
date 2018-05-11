@@ -2,11 +2,7 @@ package com.huasisoft.search.demo.serviceImpl;
 
 import com.huasisoft.search.demo.mapper.TestPersonMapper;
 import com.huasisoft.search.demo.service.TestPersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.alibaba.dubbo.config.annotation.Service;
-
 
 
 //@Service

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>search-project</artifactId>
         <groupId>com.huasisoft.search</groupId>
-        <version>1.0.0</version>
+        <version>5.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,6 +25,10 @@
         <dependency>
             <groupId>com.huasisoft.search</groupId>
             <artifactId>search-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.huasisoft.search</groupId>
+            <artifactId>search-facade</artifactId>
         </dependency>
         <!-- junit单元测试 -->
         <dependency>
@@ -104,6 +108,33 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+        <!-- Spring data mongodb -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-context</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-tx</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-expression</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-beans</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!-- Jackson-->
        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -131,16 +162,13 @@
         </dependency>
         <!-- ES集成包 -->
         <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>transport</artifactId>
         </dependency>
-        <!-- ES IK分词器集成包 -->
-<!--        <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch-analysis-ik</artifactId>
-            <classifier>zip</classifier>
-        </dependency>-->
-        <!-- kafka相关 -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
@@ -233,7 +261,6 @@
             <artifactId>poi</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
@@ -268,5 +295,15 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

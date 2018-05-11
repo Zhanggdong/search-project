@@ -1,0 +1,25 @@
+body {
+   /** background:green;*/s
+}
+.js-mindmap-active a.node {
+    background:#0099FF;/*节点的颜色*/
+    border: 2px solid white;/*节点的边框颜色*/
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;    
+}
+.js-mindmap-active a.node.active {
+    padding:5px 10px !important;
+    border-width:5px !important;
+		z-index: 99;
+}
+.js-mindmap-active a.node.activeparent {
+    padding:5px 10px !important;
+    border-width:5px !important;
+    background:#8B0000;
+}
+
+.custom-class2{ background-color:#06F !important;}

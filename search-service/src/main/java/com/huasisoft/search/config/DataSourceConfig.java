@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 
-//@Configuration
+@Configuration
 public class DataSourceConfig {
 
 	@Value("${jdbc.driver}")  
@@ -30,6 +30,8 @@ public class DataSourceConfig {
 	String maxIdle;  
 	@Value("${cp.minIdle}")  
 	String minIdle;
+	@Value("${cp.maxWait}")
+	String maxWait;
 	
 	@Value("${cp.timeBetweenEvictionRunsMillis}")  
 	String timeBetweenEvictionRunsMillis;  
@@ -54,6 +56,7 @@ public class DataSourceConfig {
 	    dataSource.setMaxActive(Integer.valueOf(maxActive));
 	    dataSource.setMaxIdle(Integer.valueOf(maxIdle));
 	    dataSource.setMinIdle(Integer.valueOf(minIdle));
+	    dataSource.setMaxWait(Integer.valueOf(maxWait));
 	    dataSource.setTimeBetweenEvictionRunsMillis(Long.valueOf(timeBetweenEvictionRunsMillis));
 	    dataSource.setMinEvictableIdleTimeMillis(Long.valueOf(minEvictableIdleTimeMillis));
 	    dataSource.setValidationQuery(validationQuery);

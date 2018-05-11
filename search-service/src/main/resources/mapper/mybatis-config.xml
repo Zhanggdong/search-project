@@ -42,7 +42,8 @@
 	  <setting name="useColumnLabel" value="true"/>
 	  <setting name="useGeneratedKeys" value="false"/>
 	  <setting name="defaultExecutorType" value="SIMPLE"/>
-	  <setting name="defaultStatementTimeout" value="25"/>
+		<!-- 该系统主要是构建索引，SQL执行时间较长，超时在单独的查询中设置 -->
+	  <!--<setting name="defaultStatementTimeout" value="25"/>-->
 	  <setting name="defaultFetchSize" value="100"/>
 	  <setting name="safeRowBoundsEnabled" value="false"/>
 	  <setting name="mapUnderscoreToCamelCase" value="true"/>

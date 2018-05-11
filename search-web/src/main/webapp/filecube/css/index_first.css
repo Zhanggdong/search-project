@@ -1,0 +1,71 @@
+html {
+	overflow-y: auto
+}
+
+body {
+	font: 12px arial;
+	background: #fff
+}
+
+body, p, form, ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+
+body, form, .searchFM {
+	position: relative
+}
+
+img {
+	border: 0
+}
+
+.middle {
+	width: 820px;
+	margin: 0 auto;
+}
+
+.searchFM {
+	margin: 0px 0px;
+	padding-left: 70px;
+}
+
+.searchIpt {
+	font: 16px "宋体", arial;
+	height: 27.6px;
+	line-height: 27.6px;
+	width: 14em;
+	border: 1px solid #b6b6b6;
+	overflow: hidden;
+	width: 490px;
+	padding-left: 4px;
+}
+
+.cp {
+	color: #77c;
+	padding-top: 5px;
+	height: 25px;
+}
+
+#hotKeyWorsUL a {
+	color: #00c;
+}
+
+.hotKeyWors {
+	float: left;
+	font-size: 14px;
+	padding-left: 120px;
+	padding-top: 25px;
+	width: 580px;
+}
+
+.hotKeyWors ul li {
+	font-size: 13px;
+	display: inline-block;
+	line-height: 30px;
+	width: 80px;
+	vertical-align: top;
+	float: left;
+	margin-left: 15px;
+}

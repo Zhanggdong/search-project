@@ -1,10 +1,28 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-    <inspection_tool class="NonSerializableWithSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="DataProviderReturnType" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="DuplicatedDataProviderNames" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbClassBasicInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbDomInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbEntityClassInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbEntityHomeInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbEntityInterfaceInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbEnvironmentInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbInterceptorInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbInterfaceMethodInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbInterfaceSignatureInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbQlInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbRemoteRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="EjbSessionHomeInterfaceInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="JavaeeApplicationDomInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ManagedBeanClassInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="MimeType" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SerializableHasSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreAnonymousInnerClasses" value="false" />
       <option name="superClassString" value="" />
     </inspection_tool>
+    <inspection_tool class="ServletWithoutMappingInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="WebProperties" enabled="true" level="WARNING" enabled_by_default="true" />
   </profile>
 </component>

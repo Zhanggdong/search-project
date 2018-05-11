@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>QUI网页界面集成框架HTML示例版</title>
+<link href="../../system/login/skin/style.css" rel="stylesheet" type="text/css" id="skin"/>
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/login.js"></script>
+
+<!--居中显示start-->
+<script type="text/javascript" src="../../libs/js/method/center-plugin.js"></script>
+<!--居中显示end-->
+<style>
+/*提示信息*/	
+#cursorMessageDiv {
+	position: absolute;
+	z-index: 99999;
+	border: solid 1px #cc9933;
+	background: #ffffcc;
+	padding: 2px;
+	margin: 0px;
+	display: none;
+	line-height:150%;
+}
+/*提示信息*/
+</style>
+</head>
+<body >
+	<div class="login_main">
+		<div class="login_top">
+		</div>
+		<div class="login_middle">
+			<div class="login_middleleft"></div>
+			<div class="login_middlecenter">
+					<form id="loginForm" action="login.do" class="login_form" method="post">
+					<div class="login_user"><input type="text" id="username"></div>
+					<div class="login_pass"><input type="password" id="password"></div>
+					<div class="clear"></div>
+					<div class="login_button">
+						<div class="login_button_left"><input type="button" onclick="login()"/></div>
+						<div class="login_button_right"><input type="reset" value=""/></div>
+						<div class="clear"></div>
+					</div>
+					</form>
+					<div class="login_info" style="display:none;"></div>
+					<div class="login_info2" style="display:none;">&nbsp;&nbsp;测试用户名:guest 密码：123456</div>
+			</div>
+			<div class="login_middleright"></div>
+			<div class="clear"></div>
+		</div>
+		<div class="login_bottom">
+			<div class="login_copyright">版权所有：http://www.quickui.net</div>
+		</div>
+	</div>
+<script>
+	$(function(){
+		//居中
+		 $('.login_main').center();
+		 document.getElementById("username").focus();
+		 $("#username").keydown(function(event){
+		 	if(event.keyCode==13){
+				login()
+			}
+		 })
+		 $("#password").keydown(function(event){
+		 	if(event.keyCode==13){
+				login()
+			}
+		 })
+		 
+	})
+
+	//登录
+	function login() {
+		$(".login_info").show();
+			$(".login_info").html("&nbsp;&nbsp;正在登录中...");
+			//登录处理
+			 window.location="../../system/layout_html/main.html";  
+	}
+</script>
+</body>
+</html>
+

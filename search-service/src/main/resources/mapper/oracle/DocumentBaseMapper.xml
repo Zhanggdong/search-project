@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huasisoft.search.core.mapper.DocumentBaseMapper">
+  <resultMap id="BaseResultMap" type="com.huasisoft.search.core.model.db.DocumentBase">
+    <result column="ID" jdbcType="CHAR" property="ID" />
+    <result column="GUID" jdbcType="CHAR" property="GUID" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="BWTYPE" jdbcType="INTEGER" property="bwtype" />
+    <result column="STEP" jdbcType="INTEGER" property="step" />
+    <result column="BANWENBIANHAO" jdbcType="CHAR" property="banwenbianhao" />
+    <result column="LAIWENDANWEI" jdbcType="CHAR" property="laiwendanwei" />
+    <result column="CREATEDATE" jdbcType="VARCHAR" property="createdate" />
+    <result column="CREATEDATETIME" jdbcType="DATE" property="createdatetime" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="CREATORNAME" jdbcType="VARCHAR" property="creatorname" />
+    <result column="CREATORGUID" jdbcType="VARCHAR" property="creatorGUID" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="DN" jdbcType="VARCHAR" property="dn" />
+    <result column="BUREAUNAME" jdbcType="VARCHAR" property="bureauname" />
+    <collection property="departments" ofType="com.huasisoft.search.core.model.db.DeptBaseInfo">
+      <id property="workflowinstanceGUID" column="workflowinstanceGUID"/>
+      <result column="departmentGUID" property="departmentGUID" />
+      <result column="departmentname" property="departmentname" />
+      <result column="dn" property="dn"/>
+      <result column="senduserGUID" property="senduserGUID"/>
+      <result column="sendusername" property="sendusername"/>
+    </collection>
+  </resultMap>
+  <select id="count" resultType="int">
+    SELECT COUNT(*) FROM ES_COMMENT_VIEWS
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    SELECT
+    t.ID,
+    t.GUID,
+    t.title,
+    t.bwtype,
+    t.banwenbianhao,
+    t.laiwendanwei,
+    t.createdate,
+    t.createdateTime,
+    t.creatorGUID,
+    t.creatorname,
+    t.dn,
+    t.bureauName,
+    t.type,
+    t.url,
+    d.workflowinstanceGUID,
+    d.senduserGUID,
+    d.senduserName,
+    d.departmentName,
+    d.departmentGUID
+    FROM ES_DEPT_VIEWS d
+    LEFT OUTER JOIN ES_ZWCONTENT_VIEWS t
+    ON t.GUID = d.workflowinstanceGUID
+    WHERE t.instancedeleted!=1
+  </select>
+</mapper>

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>search-project</artifactId>
         <groupId>com.huasisoft.search</groupId>
-        <version>1.0.0</version>
+        <version>5.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,6 +23,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.huasisoft.search</groupId>
+            <artifactId>search-facade</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.huasisoft.search</groupId>
             <artifactId>search-api</artifactId>
@@ -143,15 +147,6 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-        </dependency>
-        <!-- redis -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
         </dependency>
         <!-- log -->
         <dependency>

@@ -8,17 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="search-api" />
+        <module name="search-facade" />
         <module name="search-service" />
         <module name="search-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="admin-api" target="1.7" />
-      <module name="admin-service" target="1.7" />
-      <module name="admin-web" target="1.7" />
       <module name="search-api" target="1.7" />
+      <module name="search-facade" target="1.7" />
       <module name="search-project" target="1.7" />
-      <module name="search-service" target="1.7" />
+      <module name="search-service" target="1.8" />
       <module name="search-web" target="1.7" />
     </bytecodeTargetLevel>
   </component>

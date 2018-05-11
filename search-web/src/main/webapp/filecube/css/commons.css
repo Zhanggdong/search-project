@@ -1,0 +1,12 @@
+body{
+	font-size: 12px;
+	margin: 0px 0px;
+}
+a:link {color: blue; text-decoration:none;}
+
+.yellowBigFont{
+	color: #F7A600;
+	font-size: 28px;
+	font-style: italic;
+	font-weight: bold;
+}

@@ -1,0 +1,33 @@
+.listDataTableStyle{
+		
+}
+.listDataTableStyle table{
+	width:100%;		
+	line-height:30px;
+	font-size: 12px;
+}
+.listDataTableStyle table .changeColor{
+	background-color: #F5F5F5;
+}
+.listDataTableStyle table thead{
+	background: none repeat scroll 0 0 #F5F5F5;
+}
+.listDataTableStyle table tr th{
+	border-right: 1px solid #E5E5E5;
+	border-top: 1px solid #E5E5E5;	
+	border-bottom: 1px solid #E5E5E5;
+	/*border-top: 1px solid #E5E5E5;*/
+	padding-left: 5px;
+	text-align: center;
+	font-size: 14px;
+	/*font-weight:bold;*/
+}
+.listDataTableStyle table tr td{
+	border-right: 1px solid #E5E5E5;
+	padding-left: 5px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.listDataTableStyle table tbody tr:hover{
+	background:#C0C0C0;
+}

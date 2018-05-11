@@ -1,0 +1,442 @@
+html {
+	font-size: 12px;
+	overflow: auto;
+}
+
+body {
+	color: #000;
+	background: #fff;
+	position: relative
+}
+
+body, p, form {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+
+img {
+	border: 0
+}
+
+#fileYearGroupUL li {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	color: blue;
+	cursor: pointer;
+}
+
+
+.topRightCorner {
+	color: #999;
+	background: none repeat scroll 0 0 #696969;
+	padding: 4px 10px 5px 0;
+	height: 15px;
+}
+
+.topRightCorner a {
+	margin: 0 5px;
+	font-size: 12px;
+	color: white;
+}
+
+.searchFM {
+	padding-left: 20px;
+	text-align: left;
+	margin: 0px 0px;
+}
+
+input {
+	font: 16px "黑体", arial;
+	height: 27.5px;
+	line-height: 27.5px;
+	width: 14em;
+	border: 1px solid #b6b6b6;
+	overflow: hidden;
+}
+
+.searchIpt {
+	width: 520px;
+	padding-left: 4px;
+}
+
+.cp {
+	color: #77c
+}
+
+.nums {
+	color: #999999;
+	font-size: 13px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	top: 23px;
+	white-space: nowrap;
+}
+
+#s_tab {
+	height: 36px;
+	line-height: 32px;
+	background: #f8f8f8;
+	padding-left: 170px;
+}
+
+#s_tab ul li {
+	display: inline-block;
+	width: 100px;
+}
+
+#s_tab ul li a {
+	height: 34px;
+	display: block;
+	font-size: 14px;
+	color: #666;
+	text-align: center;
+	border-bottom: 2px solid #f8f8f8;
+	font-family: '宋体', arial;
+	text-decoration: none;
+}
+
+a:-webkit-any-link {
+	cursor: auto;
+}
+
+#s_tab ul li b {
+	height: 34px;
+	display: block;
+	border-bottom: 2px solid #38f;
+	font-weight: 700;
+	color: #323232;
+	font-size: 14px;
+	text-align: center;
+	font-family: '宋体', arial;
+}
+
+.result * {
+	font-family: "宋体";
+}
+
+.result .title {
+	margin-bottom: 6px;
+}
+
+.ic {
+	margin-right: 8px;
+	display: inline-block;
+	padding: 0;
+	vertical-align: -2px;
+	font-size: 0;
+	line-height: 9999em;
+	overflow: hidden;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+}
+
+.result .title .ic-3gp {
+	background-image: url(../images/file/small/files/3gp.gif);
+}
+
+.result .title .ic-aiv {
+	background-image: url(../images/file/small/files/avi.gif);
+}
+
+.result .title .ic-bmp {
+	background-image: url(../images/file/small/files/bmp.gif);
+}
+
+.result .title .ic-chm {
+	background-image: url(../images/file/small/files/chm.gif);
+}
+
+.result .title .ic-dll {
+	background-image: url(../images/file/small/files/dll.gif);
+}
+
+.result .title .ic-doc {
+	background-image: url(../images/file/small/files/doc.gif);
+}
+
+.result .title .ic-docx {
+	background-image: url(../images/file/small/files/docx.gif);
+}
+
+.result .title .ic-dwf {
+	background-image: url(../images/file/small/files/dwf.gif);
+}
+
+.result .title .ic-exe {
+	background-image: url(../images/file/small/files/exe.gif);
+}
+
+.result .title .ic-flv {
+	background-image: url(../images/file/small/files/flv.gif);
+}
+
+.result .title .ic-folder {
+	background-image: url(../images/file/small/files/folder.gif);
+}
+
+.result .title .ic-gif {
+	background-image: url(../images/file/small/files/gif.gif);
+}
+
+.result .title .ic-htm {
+	background-image: url(../images/file/small/files/htm.gif);
+}
+
+.result .title .ic-html {
+	background-image: url(../images/file/small/files/html.gif);
+}
+
+.result .title .ic-jpg {
+	background-image: url(../images/file/small/files/jpg.gif);
+}
+
+.result .title .ic-mdb {
+	background-image: url(../images/file/small/files/mdb.gif);
+}
+
+.result .title .ic-mov {
+	background-image: url(../images/file/small/files/mov.gif);
+}
+
+.result .title .ic-mp3 {
+	background-image: url(../images/file/small/files/mp3.gif);
+}
+
+.result .title .ic-mp4 {
+	background-image: url(../images/file/small/files/mp4.gif);
+}
+
+.result .title .ic-mpg {
+	background-image: url(../images/file/small/files/mpg.gif);
+}
+
+.result .title .ic-pdf {
+	background-image: url(../images/file/small/files/pdf.gif);
+}
+
+.result .title .ic-pps {
+	background-image: url(../images/file/small/files/pps.gif);
+}
+
+.result .title .ic-ppt {
+	background-image: url(../images/file/small/files/ppt.gif);
+}
+
+.result .title .ic-pptx {
+	background-image: url(../images/file/small/files/pptx.gif);
+}
+
+.result .title .ic-rar {
+	background-image: url(../images/file/small/files/rar.gif);
+}
+
+.result .title .ic-rm {
+	background-image: url(../images/file/small/files/rm.gif);
+}
+
+.result .title .ic-rmvb {
+	background-image: url(../images/file/small/files/rmvb.gif);
+}
+
+.result .title .ic-rtf {
+	background-image: url(../images/file/small/files/rtf.gif);
+}
+
+.result .title .ic-swf {
+	background-image: url(../images/file/small/files/swf.gif);
+}
+
+.result .title .ic-txt {
+	background-image: url(../images/file/small/files/txt.gif);
+}
+
+.result .title .ic-unknown, ic-rbc {
+	background-image: url(../images/file/small/files/unknown.gif);
+}
+
+.result .title .ic-wav {
+	background-image: url(../images/file/small/files/wav.gif);
+}
+
+.result .title .ic-wmac {
+	background-image: url(../images/file/small/files/wma.gif);
+}
+
+.result .title .ic-wmv {
+	background-image: url(../images/file/small/files/wmv.gif);
+}
+
+.result .title .ic-xls {
+	background-image: url(../images/file/small/files/xls.gif);
+}
+
+.result .title .ic-xlsx {
+	background-image: url(../images/file/small/files/xlsx.gif);
+}
+
+.result .title .ic-xml {
+	background-image: url(../images/file/small/files/xml.gif);
+}
+
+.result .title .ic-zip {
+	background-image: url(../images/file/small/files/zip.gif);
+}
+
+.result .title a:link {
+	font-size: 16px;
+	color: #00c;
+	text-decoration: none;
+}
+
+.result .summary {
+	color: #555;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.result .detail {
+	color: #888;
+}
+
+.result .detail .fr {
+	float: right;
+}
+
+.result .detail .fr a:link {
+	color: #888;
+	text-decoration: underline;
+}
+
+.l21 {
+	line-height: 21px;
+}
+
+em {
+	font-style: normal;
+	color: #cc0000;
+}
+
+th, td {
+	font-family: arial
+}
+
+.foot {
+	background: none repeat scroll 0 0 #E6E6E6;
+	color: #7777CC;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+}
+
+.ul li {
+	display: inline-block;
+	line-height: 20px;
+	padding-right: 10px;
+	vertical-align: top;
+}
+
+.qtype {
+	display: -moz-inline-box;
+	display: inline-block;
+	float: left;
+	padding: 0.3em 0.5em;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #e7ecf0;
+	display: inline-block;
+}
+
+.qtype_selected {
+	background-color: #ff0000;
+	display: -moz-inline-box;
+	display: inline-block;
+	float: left;
+	padding: 0.3em 0.5em;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #e7ecf0;
+	display: inline-block;
+}
+
+.searchIptTd1 {
+	background: none repeat scroll 0 0 #F5F5F5;
+	background-image: url("../images/logo1.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	border-bottom: 1px solid #E5E5E5;
+	height: 60px;
+}
+
+.searchIptTd {
+	background: none repeat scroll 0 0 #F5F5F5;
+	border-bottom: 1px solid #E5E5E5;
+	height: 60px;
+	width: 100%;
+}
+
+.searchResultQtimeTr {
+	border-bottom: 1px solid #E5E5E5;
+	height: 40px;
+	width: 100%;
+}
+
+.searchResultQtimeTr td {
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.accordionFacetDiv {
+	height: 450px;
+	overflow: auto;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.accordionFacetUL {
+	height: 450px;
+	overflow: auto;
+	width: 210px
+}
+
+.inputLable {
+	text-align: right;
+	vertical-align: middle;
+}
+
+.inputTxt {
+	background: none repeat scroll 0 0 transparent;
+	border: 1px solid #C3C3C3;
+	height: 20px;
+	line-height: 20px;
+	overflow: hidden;
+	padding: 2px 0 2px 3px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 292px;
+}
+
+.inputSelect {
+	display: block;
+	width: 296px;
+	height: 25px;
+	padding: 4px 4px;
+	line-height: 25px;
+}
+
+.advanceSearchDialogTr {
+	height: 38px;
+	line-height: 38px;
+}
+
+.topPadding {
+	padding-top: 186px;
+}
+
+.topTools {
+	left: 0px;
+	width: 100%;
+	position: fixed;
+	z-index: 299;
+}

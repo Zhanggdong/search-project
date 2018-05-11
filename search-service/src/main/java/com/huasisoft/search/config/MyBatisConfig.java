@@ -21,9 +21,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.github.pagehelper.PageHelper;
 
-//@Configuration
+@Configuration
 @EnableTransactionManagement(proxyTargetClass=false,mode=AdviceMode.PROXY,order=201)
-@MapperScan(basePackages = "com.huasisoft.search.demo.mapper",sqlSessionFactoryRef="sqlSessionFactory",sqlSessionTemplateRef="sqlSessionTemplate")
+@MapperScan(basePackages = "com.huasisoft.search.**.mapper",sqlSessionFactoryRef="sqlSessionFactory",sqlSessionTemplateRef="sqlSessionTemplate")
 public class MyBatisConfig {
 
 	@Resource(name = "dataSource")
