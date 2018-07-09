@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class DataSourceConfig {
@@ -32,7 +33,8 @@ public class DataSourceConfig {
 	String minIdle;
 	@Value("${cp.maxWait}")
 	String maxWait;
-	
+	@Value("${cp.removeAbandonedTimeoutMillis}")
+	String removeAbandonedTimeoutMillis;
 	@Value("${cp.timeBetweenEvictionRunsMillis}")  
 	String timeBetweenEvictionRunsMillis;  
 	@Value("${cp.minEvictableIdleTimeMillis}")  
@@ -57,6 +59,7 @@ public class DataSourceConfig {
 	    dataSource.setMaxIdle(Integer.valueOf(maxIdle));
 	    dataSource.setMinIdle(Integer.valueOf(minIdle));
 	    dataSource.setMaxWait(Integer.valueOf(maxWait));
+	    dataSource.setRemoveAbandonedTimeoutMillis(Integer.valueOf(removeAbandonedTimeoutMillis));
 	    dataSource.setTimeBetweenEvictionRunsMillis(Long.valueOf(timeBetweenEvictionRunsMillis));
 	    dataSource.setMinEvictableIdleTimeMillis(Long.valueOf(minEvictableIdleTimeMillis));
 	    dataSource.setValidationQuery(validationQuery);
@@ -71,5 +74,10 @@ public class DataSourceConfig {
 	    return dataSource;  
 	}
 
+	@Bean(name = "jdbcTemplate")
+	public JdbcTemplate jdbcTemplate() throws SQLException {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+		return jdbcTemplate;
+	}
 	 
 }

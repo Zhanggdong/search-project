@@ -41,6 +41,7 @@ public class DeleteByQuery extends BaseTest{
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testForAsyncDeleteByQuery() throws Exception{
        DeleteByQueryAction.INSTANCE
                 .newRequestBuilder(transportClient)

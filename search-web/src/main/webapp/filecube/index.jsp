@@ -1,5 +1,3 @@
-<%@page import="net.risesoft.common.consts.RiseUser"%>
-<%@page import="net.risesoft.common.consts.SessionConst"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -92,11 +90,11 @@ html {
     text-align: left;
     text-decoration: none;
     font-size:12px;
-} 
+}
 
 .out-div {
         font-size: 14px;
-        line-height: 25px;    
+        line-height: 25px;
         width: 200px;
         text-align: center;
         border-radius: 5px;
@@ -105,7 +103,7 @@ html {
         background-color: #fff;
         border: 1px solid #d1d1d1;
     }
-    
+
     .arrow {
         width: 0px;
         height: 0px;
@@ -177,7 +175,7 @@ div#users-contain table td,div#users-contain table th {
         $('#createdate_endDate').val('');
 
         var departNameSelect = '<option value="all">不限</option>';
-        $.getJSON(contextPath + '/search/getBureauList?timestamp=' + new Date(), function(data) {
+        $.getJSON(contextPath + '/api/query/getBureauList?timestamp=' + new Date(), function(data) {
             if (data) {
                 $.each(data, function(index) {
                     departNameSelect += '<option value="' + data[index].guid + '">' + data[index].name + '</option>';
@@ -198,12 +196,12 @@ div#users-contain table td,div#users-contain table th {
             return;
         }
         if (text == '*') {
-            location.href = contextPath + "/search/search?keyWord=" + encodeURIComponent($('#searchText').val()) + "&QParams=" + encodeURIComponent(_QParams);
+            location.href = contextPath + "/api/search/search?query=" + encodeURIComponent($('#searchText').val()) + "&filters=" + encodeURIComponent(_QParams);
         } else {
-            location.href = contextPath + "/search/search?keyWord=" + encodeURIComponent($('#searchText').val());
+            location.href = contextPath + "/api/search/search?query=" + encodeURIComponent($('#searchText').val());
         }
     }
-    
+
 	//高级搜索对话框
 	function advanceSearchDialog() {
 		$("#advanceSearchDialog").dialog({
@@ -309,14 +307,14 @@ div#users-contain table td,div#users-contain table th {
 	 * 初始化参数
 	 */
 	function initAdvParams() {
-		
+
 	}
 	/**
 	 * 自动补全
 	 */
 	function autocomplete() {
 		var dept_shortdn_datas = [];
-		$.post(contextPath + "/search/getDepartmentList", function(data,
+		$.post(contextPath + "/query/getDepartmentList", function(data,
 				textStatus) {
 			for (var i = 0; i < data.data.length; i++) {
 				//必须要加上换行符，不然不能提示
@@ -327,29 +325,29 @@ div#users-contain table td,div#users-contain table th {
 			});
 		}, "json");
 	}
-	
+
 	function showhid(id){
 	    document.getElementById(id).style.display ='block';
 	}
 	function showhid2(id){
 		document.getElementById(id).style.display ='none';
 	}
-	function show(obj,id) { 
-	   	var objDiv = $("#"+id+""); 
-	   	$(objDiv).css("display","block"); 
-	} 
-	function hide(obj,id) { 
-		var objDiv = $("#"+id+""); 
-		$(objDiv).css("display", "none"); 
-	} 
+	function show(obj,id) {
+	   	var objDiv = $("#"+id+"");
+	   	$(objDiv).css("display","block");
+	}
+	function hide(obj,id) {
+		var objDiv = $("#"+id+"");
+		$(objDiv).css("display", "none");
+	}
 </script>
 </head>
 <jsp:include page="header.jsp"></jsp:include>
  <body>
-<div class="mainContain"> 
-      <div class="ps_zhihuijiansuozinan" onmouseover="showhid('downmenu1')" onmouseout="showhid2('downmenu1')">            
-                <a href="#" class="zinan" onclick="showhid('downmenu1');">检索指南</a>   
-                      
+<div class="mainContain">
+      <div class="ps_zhihuijiansuozinan" onmouseover="showhid('downmenu1')" onmouseout="showhid2('downmenu1')">
+                <a href="#" class="zinan" onclick="showhid('downmenu1');">检索指南</a>
+
                <div class="bdpfmenu"  id="downmenu1" style="left: 76%; top: 120px; display: none;">
                <div class="bdnuarrow">
                  <em></em>
@@ -360,17 +358,17 @@ div#users-contain table td,div#users-contain table th {
 				<a onmouseover="javascript:show(this,'chazhao');" onmouseout="hide(this,'chazhao')">查找原则</a>
 				<a onmouseover="javascript:show(this,'paixu');" onmouseout="hide(this,'paixu')">排序原则</a>
 				<a onmouseover="javascript:show(this,'shousuo');" onmouseout="hide(this,'shousuo')">搜索范围</a>
-				<a onmouseover="javascript:show(this,'fjchaxun');" onmouseout="hide(this,'fjchaxun')">附件查询</a>	
-				<a onmouseover="javascript:show(this,'quxian');" onmouseout="hide(this,'quxian')">权限说明</a>	
+				<a onmouseover="javascript:show(this,'fjchaxun');" onmouseout="hide(this,'fjchaxun')">附件查询</a>
+				<a onmouseover="javascript:show(this,'quxian');" onmouseout="hide(this,'quxian')">权限说明</a>
 				<a onmouseover="javascript:show(this,'anli');" onmouseout="hide(this,'anli')">查询案例</a></div>
-				
+
 				<!-- 入库原则 -->
 				<div id="ruku" style="padding-left:70px;display: none;">
 				<div class="out-div" >
 			    <div class="arrow" ></div>
 			    <span>经过个人的件（发文，收文，阅件）用排序号的方式入库，已进入回收站的文件，不入检索库。</span>
 			    </div>
-			    </div>	
+			    </div>
 			    <!-- 分词原则 -->
 			    <div id="fenchi" style="padding-left:70px;margin-top:25px;display: none;">
 				<div class="out-div">
@@ -379,7 +377,7 @@ div#users-contain table td,div#users-contain table th {
 			                          华人民共和国”整体和分成单个词语“我 | 爱 | 中华人民共和国 | 中华人民 | 中华 | 华人 | 人民共和国 ”（以竖杠划分为一个词）。</span>
 			    </div>
 			    </div>
-			    <!-- 查找原则 -->	
+			    <!-- 查找原则 -->
 			    <div id="chazhao" style="padding-left:70px;margin-top:50px;display: none;">
 				<div class="out-div">
 			    <div class="arrow" ></div>
@@ -388,14 +386,14 @@ div#users-contain table td,div#users-contain table th {
 			                          所遵循的过滤查询。例如（输入“移动测试”时当我们点击按“文 件标题”查询他只会查询出”标题“中所含有“移动，测试，移
 			                          动测试”的相关公文）按其他条件也遵循这一原则。</span>
 			    </div>
-			    </div>	
+			    </div>
 			    <!-- 排序原则 -->
 			    <div id="paixu" style="padding-left:70px;margin-top:75px;display: none;">
 				<div class="out-div">
 			    <div class="arrow" ></div>
 			    <span>所有查询结果返回时，按查询的匹配程度进行排序。</span>
 			    </div>
-			    </div>	
+			    </div>
 			    <!-- 搜索范围原则 -->
 			    <div id="shousuo" style="padding-left:70px;margin-top:100px;display: none;">
 				<div class="out-div">
@@ -425,7 +423,7 @@ div#users-contain table td,div#users-contain table th {
 			    	特殊情况：如果在旧OA中没有账号的用户是无法查询到相关文件的<br/>
 			    </span>
 			    </div>
-			    </div>	
+			    </div>
 			    <!-- 查询案例 -->
 			    <div id="anli" style="padding-left:70px;margin-top:175px;display: none;">
 				<div class="out-div">
@@ -433,22 +431,22 @@ div#users-contain table td,div#users-contain table th {
 			    <span>在输入关键字时可以在中间加上空格（不加的话默认使用配置中分词器进行分词），例如输入“测试综合办”，它返回包含
                                                            关键字  “测试综合办”和“测试”以及“综合办”的结果。</span>
 			    </div>
-			    </div>	
-			    
-			     
-		</div>					
+			    </div>
+
+
+		</div>
         <div class="ps_logo">
                     <img alt="坪山" src="images/pingshan.png"/>
-       </div>    
-    <div class="ps_search">    
+       </div>
+    <div class="ps_search">
         <span><input type="text" id="searchText"/></span>
         <span><input type="submit" value="搜索" onclick="submitForm()"/></span>
         &nbsp&nbsp&nbsp&nbsp
         <span><input type="submit" value="高级搜索" onclick="advanceSearchDialog()"/></span>
-    </div> 
+    </div>
 </div>
 <!-- 高级检索对话框 -->
-	<div id="advanceSearchDialog" 
+	<div id="advanceSearchDialog"
 		style="display: none; padding-left: 40px;">
 		<form id="advSearchForm" action="${ctx}/search/search" method="post">
 			<center>
@@ -464,7 +462,7 @@ div#users-contain table td,div#users-contain table th {
 						<td style="text-align: left;"><select
 							class="text ui-widget-content ui-corner-all" id="searchOption"
 							name="searchType">
-								<option value="searchStr">全部</option>
+								<option value="searchAll">全部</option>
 								<option value="title">标题</option>
 								<option value="commentContent">意见</option>
 								<option value="banwenbianhao">办文编号</option>

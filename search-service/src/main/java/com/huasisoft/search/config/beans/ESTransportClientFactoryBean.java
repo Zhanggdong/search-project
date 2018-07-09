@@ -60,7 +60,7 @@ public class ESTransportClientFactoryBean implements FactoryBean<TransportClient
     public void afterPropertiesSet() throws Exception {
         Settings settings = Settings.builder().put("cluster.name", this.clusterName)
                 .put("client.transport.sniff",true)
-                .put("client.transport.ping_timeout","120s")
+                .put("client.transport.ping_timeout","300s")
                 .build();
         client=new PreBuiltTransportClient(settings);
         if (this.hosts.size()>0){

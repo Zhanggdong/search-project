@@ -1,14 +1,10 @@
 package com.huasisoft.search.config;
 
 
-import java.io.IOException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
-import com.huasisoft.search.config.beans.ProxySpringContextsUtil;
-import com.huasisoft.search.demo.model.Logs;
-import com.huasisoft.search.demo.service.LogsService;
 import org.apache.log4j.Logger;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,7 +32,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @PropertySource({"classpath:/properties/application.properties"})
 @ComponentScan(basePackages="com.huasisoft.search")
 @ImportResource("dubbo.xml")
-public class AppConfig extends ProxySpringContextsUtil implements AsyncConfigurer,SchedulingConfigurer{
+public class AppConfig implements AsyncConfigurer,SchedulingConfigurer{
 
 	private static Logger logger = Logger.getLogger(AppConfig.class.getName());
 	
@@ -65,7 +61,7 @@ public class AppConfig extends ProxySpringContextsUtil implements AsyncConfigure
         executor.setQueueCapacity(Integer.valueOf(threadPoolQueueSize));
         executor.setKeepAliveSeconds(Integer.valueOf(threadPoolKeepAlive));
         executor.setRejectedExecutionHandler(new CallerRunsPolicy());
-        executor.setThreadNamePrefix("haeExecutor-");
+        executor.setThreadNamePrefix("searchExecutor-");
         executor.initialize();
         return executor;
 	}

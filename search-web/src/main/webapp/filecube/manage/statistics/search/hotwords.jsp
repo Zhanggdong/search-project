@@ -89,7 +89,7 @@
             align : 'center',
             width : "100"
           } ],
-          url : '${ctx}/search/hotWordsList',
+          url : '${ctx}/query/hotWordsList',
           pageSize : 20,
           sortName : 'id',
           rownumbers : true,

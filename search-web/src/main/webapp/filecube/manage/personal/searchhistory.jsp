@@ -88,7 +88,7 @@
             align : 'center',
             width : "200"
           }],
-          url : '/search/searchLogList',
+          url : '/query/searchLogList',
           pageSize : 20,
           sortName : 'searchTime',
           rownumbers : true,

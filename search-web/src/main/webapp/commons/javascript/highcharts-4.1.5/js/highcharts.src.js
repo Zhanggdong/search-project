@@ -3240,7 +3240,7 @@ SVGRenderer.prototype = {
 									softLineNo = 1,
 									rotation = wrapper.rotation,
 									wordStr = span, // for ellipsis
-									cursor = wordStr.length, // binary search cursor
+									cursor = wordStr.length, // binary query cursor
 									bBox;
 
 								while ((hasWhiteSpace || ellipsis) && (words.length || rest.length)) {
@@ -3255,7 +3255,7 @@ SVGRenderer.prototype = {
 
 									tooLong = actualWidth > width;
 
-									// For ellipsis, do a binary search for the correct string length
+									// For ellipsis, do a binary query for the correct string length
 									if (wasTooLong === undefined) {
 										wasTooLong = tooLong; // First time
 									}
@@ -9557,7 +9557,7 @@ Pointer.prototype = {
 		}
 
 		// If it has a hoverPoint and that series requires direct touch (like columns), 
-		// use the hoverPoint (#3899). Otherwise, search the k-d tree.	
+		// use the hoverPoint (#3899). Otherwise, query the k-d tree.
 		if (!shared && hoverSeries && hoverSeries.directTouch && hoverPoint) {
 			kdpoint = hoverPoint;
 
@@ -11514,21 +11514,21 @@ Chart.prototype = {
 			j,
 			points;
 
-		// search axes
+		// query axes
 		for (i = 0; i < axes.length; i++) {
 			if (axes[i].options.id === id) {
 				return axes[i];
 			}
 		}
 
-		// search series
+		// query series
 		for (i = 0; i < series.length; i++) {
 			if (series[i].options.id === id) {
 				return series[i];
 			}
 		}
 
-		// search points
+		// query points
 		for (i = 0; i < series.length; i++) {
 			points = series[i].points || [];
 			for (j = 0; j < points.length; j++) {

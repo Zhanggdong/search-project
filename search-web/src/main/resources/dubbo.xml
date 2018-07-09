@@ -20,8 +20,8 @@
     <dubbo:application name="hae_consumer_1"></dubbo:application>
     <dubbo:registry address="zookeeper://10.0.0.32:2185?client=zkclient"/>
     <dubbo:protocol name="dubbo" port="20882" ></dubbo:protocol>
-    <dubbo:provider threads="200"  version="1.0.0" timeout="12000000" />
-    <dubbo:consumer check = "false" version="1.0.0"  timeout="12000000" />
+    <dubbo:provider threads="200"  version="1.0.0" retries="0" timeout="30000" />
+    <dubbo:consumer check = "false" version="1.0.0" retries="0"  timeout="30000" />
     <dubbo:monitor protocol="registry" />
     <bean class="com.huasisoft.search.annotation.AnnotationBean">
         <constructor-arg name="annotationPackage" type="java.lang.String" value="com.huasisoft.search.**.web" />

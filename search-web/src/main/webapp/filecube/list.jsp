@@ -1,40 +1,25 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
-<%@page import="net.risesoft.filecube.util.FilecubeUtil"%>
 <%@page language="java" import="java.util.*"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.risesoft.filecube.util.Constant"%>
-<%@ page import="net.risesoft.common.consts.RiseUser"%>
-<%@ page import="net.risesoft.common.consts.SessionConst"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	pageContext.setAttribute("ctx", path);
-	int pageStart = StringUtils.isNotBlank(request
-			.getParameter("pageStart")) ? Integer.parseInt(request
-			.getParameter("pageStart")) : 0;
-	int rows = StringUtils.isNotBlank(request.getParameter("rows"))
-			? Integer.parseInt(request.getParameter("rows"))
+	/*int pageNum = StringUtils.isNotBlank(request
+			.getParameter("pageNum")) ? Integer.parseInt(request
+			.getParameter("pageNum")) : 0;
+	int pageSize = StringUtils.isNotBlank(request.getParameter("pageSize"))
+			? Integer.parseInt(request.getParameter("pageSize"))
 			: 10;
-	pageContext.setAttribute("keyWord", request.getParameter("keyWord"));
+	pageContext.setAttribute("query", request.getParameter("query"));
 	pageContext.setAttribute("searchType",request.getParameter("searchType"));
-	pageContext.setAttribute("QParams", request.getParameter("QParams"));
-	pageContext.setAttribute("pageStart", pageStart);
-	pageContext.setAttribute("rows", rows);
-	pageContext.setAttribute("serverip", Constant.serverip);
-	pageContext.setAttribute("oaServerUrl", FilecubeUtil.oaServerUrl);
-	pageContext.setAttribute("oaServeroldUrl",
-			FilecubeUtil.oaServeroldUrl);
-	pageContext.setAttribute("fileServerUrl",
-			FilecubeUtil.fileServerUrl);
-	pageContext.setAttribute("oaHistoryServerUrl",
-			FilecubeUtil.oaHistoryServerUrl);
-	RiseUser user = (RiseUser) request.getSession().getAttribute(
-			SessionConst.RISEUSER);
-	pageContext.setAttribute("userLoginName", user.getLoginName());
+	pageContext.setAttribute("filterQueryParams", request.getParameter("filterQueryParams"));
+	pageContext.setAttribute("pageNum", pageNum);
+	pageContext.setAttribute("pageSize", pageSize);*/
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -128,15 +113,15 @@ div#users-contain table td,div#users-contain table th {
 	var contextPath = "${ctx}";
 	var _globalCondition = "${folderLevels}";
 	var officeJson = "${officeJson}";
-	var numFound = parseInt('${numFound}');
-	var pageStart = parseInt('${pageStart}');
-	var rows = 10;
+	var total = parseInt('${total}');
+	var pageNum = parseInt('${pageNum}');
+	var pageSize = 10;
 	var oaServerUrl = "${oaServerUrl}";
 	var oaServeroldUrl = "${oaServeroldUrl}";
 	var fileServerUrl = "${fileServerUrl}";
 	var oaHistoryServerUrl = "${oaHistoryServerUrl}";
 	var userLoginName = "${userLoginName}";
-	var searchType = null;
+	var searchType = "${searchType}";
 
 	$(function() {
 		$("#searchId").children("li").each(function() {
@@ -160,60 +145,21 @@ div#users-contain table td,div#users-contain table th {
 			$('.topTools').after('<div class="topPadding"></div>');
 		}
 
-		$('#biztype')
-				.change(
-						function() {
-							if ($(this).children('option:selected').val() == 1) {
-								$("#fileType").removeAttr("disabled");
-								$("#fileSource").removeAttr("disabled");
-
-								var typeSelect = '<option value="all">不限</option>';
-								$
-										.getJSON(
-												contextPaht
-														+ '/search/getAppList',
-												function(data) {
-													if (data) {
-														$
-																.each(
-																		data,
-																		function(
-																				index) {
-																			typeSelect += '<option value="' + data[index][0] + '">'
-																					+ data[index][1]
-																					+ '</option>';
-																		});
-														$('#fileType').html(
-																typeSelect);
-													}
-												});
-
-								var sourceSelect = '<option value="all">不限</option><option value="repository">来文</option><option value="workflow">其他资料</option>';
-								$('#fileSource').html(sourceSelect);
-							} else {
-								$("#fileType").attr("disabled", "disabled");
-								$("#fileSource").attr("disabled", "disabled");
-							}
-						});
-
-		$("#Pagination").pagination(numFound, {
+		$("#Pagination").pagination(total, {
 			num_edge_entries : 2,
 			num_display_entries : 5,
 			callback : pageselectCallback,
-			current_page : pageStart,
+			current_page : pageNum,
 			items_per_page : 10
 		});
 	});
 
-	function pageselectCallback(pageStart, jq) {
-		var dataStart = pageStart * rows;
-		location.href = contextPath + "/search/search?searchType="+${searchType}+"&keyWord="
-				+ encodeURIComponent(_List_searchKeyWords) + '&QParams='
-				+ encodeURIComponent(_QParams) + '&pageStart=' + pageStart
-				+ '&rows=' + rows;
+	function pageselectCallback(pageNum, jq) {
+		var dataStart = pageNum * pageSize;
+		location.href=contextPath+"/api/search/search?searchType="+searchType+"&query="+encodeURIComponent(_List_searchKeyWords)+"&filterQueryParams="+encodeURIComponent(_filterQueryParams) + "&pageNum="+pageNum+"&pageSize="+pageSize;
 	}
-	var _List_searchKeyWords = '${keyWord}';
-	var _QParams = '${QParams}';
+	var _List_searchKeyWords = '${query}';
+	var _filterQueryParams = '${filterQueryParams}';
 	//回车事件
 	document.onkeydown = function(event) {
 		e = event ? event : (window.event ? window.event : null);
@@ -244,7 +190,7 @@ div#users-contain table td,div#users-contain table th {
 	 * type:检索指标
 	 */
 	function searchByType(type) {
-		_QParams = null;
+		_filterQueryParams = null;
 		var text = $('#searchText').val();
 		text = text.replace(/[ ]/g, "");
 		if (text == "") {
@@ -252,8 +198,8 @@ div#users-contain table td,div#users-contain table th {
 			return;
 		}
 		else {
-			location.href = contextPath + "/search/search?searchType=" + type
-					+ "&keyWord=" + encodeURIComponent($('#searchText').val());
+			location.href = contextPath + "/api/search/search?searchType=" + type
+					+ "&query=" + encodeURIComponent($('#searchText').val());
 		}
 	}
 
@@ -261,7 +207,7 @@ div#users-contain table td,div#users-contain table th {
 	 * 根据guid打开文件
 	 */
 	function openfile(guid) {
-		$.post(contextPath + '/search/checkPermission', {
+		$.post(contextPath + '/api/query/checkPermission', {
 			'guid' : guid
 		}, function(data) {
 			if (data) {
@@ -278,8 +224,8 @@ div#users-contain table td,div#users-contain table th {
 	 * fqValue：字段值
 	 */
 	function filterQuery(fqField, fqValue) {
-		var QParams = $("#filterQueryParam").val();
-		var fqArr = QParams.split("&fq=");
+		var filterQueryParams = $("#filterQueryParam").val();
+		var fqArr = filterQueryParams.split("&fq=");
 		var temp = "";
 		var count = 0;
 		for (var i = 0; i < fqArr.length; i++) {
@@ -347,7 +293,7 @@ div#users-contain table td,div#users-contain table th {
 			var nowhtml = cname[i].innerHTML; //元素的内容
 			var nowlength = cname[i].innerHTML.length; //元素文本的长度
 			if (nowlength > wordlength) {
-				cname[i].innerHTML = nowhtml.substr(0, 80) + '......'; //截取元素的文本的长度并加上省略号
+				cname[i].innerHTML = nowhtml.substr(0, 150) + '......'; //截取元素的文本的长度并加上省略号
 			}
 		}
 	};
@@ -500,19 +446,11 @@ div#users-contain table td,div#users-contain table th {
 					+ endDate + "]";
 		}
 		//创建部门
-		var dept_shortdn = $('#dept_shortdn').val();
-		if (dept_shortdn != null && dept_shortdn != "") {
-			advSearchQParams += "&fq=dept_shortdn:" + dept_shortdn;
+		var dn = $('#dn').val();
+		if (dn != null && dn != "") {
+			advSearchQParams += "&fq=dn:" + dn;
 		}
 
-	}
-
-	function setDeaultAdvIpt() {
-
-	}
-
-	function dateToUTC(datestr) {
-		return datestr + "T00:00:00.000Z";
 	}
 
 	/**
@@ -523,7 +461,7 @@ div#users-contain table td,div#users-contain table th {
 		$("#searchOption").val(null);
 		$("#creatorname").val(null);
 		$("#createdate").val(null);
-		$("#dept_shortdn").val(null);
+		$("#dn").val(null);
 		$("#fileSource").val(null);
 	}
 
@@ -537,15 +475,15 @@ div#users-contain table td,div#users-contain table th {
 	 * 自动补全
 	 */
 	function autocomplete() {
-		var dept_shortdn_datas = [];
-		$.post(contextPath + "/search/getDepartmentList", function(data,
+		var dn_datas = [];
+		$.post(contextPath + "/query/getDepartmentList", function(data,
 				textStatus) {
 			for (var i = 0; i < data.data.length; i++) {
 				//必须要加上换行符，不然不能提示
-				dept_shortdn_datas.push(data.data[i].DEPT_SHORTDN + '\n');
+				dn_datas.push(data.data[i].dn + '\n');
 			}
-			$("#dept_shortdn").autocomplete({
-				source : dept_shortdn_datas
+			$("#dn").autocomplete({
+				source : dn_datas
 			});
 		}, "json");
 	}
@@ -557,14 +495,14 @@ div#users-contain table td,div#users-contain table th {
 		<%-- ${advanceData} --%>
 		<div class="ps_search_enter">
 			<div class="searchFM">
-				<input type="hidden" id="filterQueryParam" name="QParams"
-					value="${requestScope.QParams}" /> <img alt="icon"
+				<input type="hidden" id="filterQueryParam" name="filterQueryParams"
+					value="${requestScope.filterQueryParams}" /> <img alt="icon"
 					src="${ctx}/filecube/images/pingshan-icon.png" /> <span><input
-					type="text" name="QParams" id="searchText"
-					value="${keyWord == '*' ? '' : keyWord}" /> </span> <span> <input
-					id="QParamsHiddenIpt" class="searchIpt" type="submit" value="搜索"
-					onclick="submitForm()" name="keyWord" maxlength="150"
-					value="${keyWord == '*' ? '' : keyWord}" />
+					type="text" name="filterQueryParams" id="searchText"
+					value="${query == '*' ? '' : query}" /> </span> <span> <input
+					id="filterQueryParamsHiddenIpt" class="searchIpt" type="submit" value="搜索"
+					onclick="submitForm()" name="query" maxlength="150"
+					value="${query == '*' ? '' : query}" />
 				</span> &nbsp&nbsp&nbsp&nbsp <span> <input id="advanceSearchBtn"
 					class="searchIpt" type="submit" value="高级搜索"
 					onclick="advanceSearchDialog()" />
@@ -575,8 +513,8 @@ div#users-contain table td,div#users-contain table th {
 			<!-- 搜索分类选项-->
 			<div class="ps_search_result_tab">
 				<ul class="clear" id="searchId">
-					<li id="searchStr" class="fl pointer"
-						onclick="searchByType('searchStr')">全部</li>
+					<li id="searchAll" class="fl pointer"
+						onclick="searchByType('searchAll')">全部</li>
 					<li id="title" class="fl pointer" onclick="searchByType('title')">标题</li>
 					<li id="commentContent" class="fl pointer"
 						onclick="searchByType('commentContent')">意见</li>
@@ -594,228 +532,118 @@ div#users-contain table td,div#users-contain table th {
 				</ul>
 			</div>
 			<div class="ps_search_result_tip">
-				<p>找到${requestScope.numFound}条搜索结果（用时${requestScope.qTime}毫秒）</p>
+				<p>找到${requestScope.total}条搜索结果（用时${requestScope.totalTime}毫秒）</p>
 			</div>
 			<!-- 搜索结果内容-->
 			<div id="ps_search_result_con">
-				<c:if test="${not empty requestScope.officeVoLists}">
-					<c:forEach items="${requestScope.officeVoLists}"
-						var="officeVoLists" varStatus="stat">
+				<c:if test="${not empty requestScope.documents}">
+					<c:forEach items="${requestScope.documents}"
+						var="documents" varStatus="stat">
 						<!-- 新OA公文索引库 -->
-						<c:if test="${officeVoLists.type=='1'}">
+						<c:if test="${documents.type=='1'}">
 							<div class="ps_search_result_con clear">
-								<p class="elips" onclick="viewdocument('${officeVoLists.guid}')">${officeVoLists.title}</p>
-								<c:if test="${officeVoLists.banwenbianhao!=null}">
+								<p class="elips" onclick="viewdocument('${documents.guid}')">${documents.title}</p>
+								<c:if test="${documents.banwenbianhao!=null}">
 									<c:choose>
-										<c:when test="${officeVoLists.banwenbianhao=='null'}">
+										<c:when test="${documents.banwenbianhao=='null'}">
 											<div>
 												<span class="description"></span>
 											</div>
 										</c:when>
 										<c:otherwise>
-											<p class="article">办文编号：${officeVoLists.banwenbianhao}</p>
+											<p class="article">办文编号：${documents.banwenbianhao}</p>
 										</c:otherwise>
 									</c:choose>
 								</c:if>
-								<c:if test="${officeVoLists.laiwendanwei!=null}">
+								<c:if test="${documents.laiwendanwei!=null}">
 									<c:choose>
-										<c:when test="${officeVoLists.laiwendanwei=='null'}">
+										<c:when test="${documents.laiwendanwei=='null'}">
 											<div>
 												<span class="description"></span>
 											</div>
 										</c:when>
 										<c:otherwise>
-											<p class="article">来文单位：${officeVoLists.laiwendanwei}</p>
+											<p class="article">来文单位：${documents.laiwendanwei}</p>
 										</c:otherwise>
 									</c:choose>
 								</c:if>
 								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
-								</div>
-							</div>
-						</c:if>
-						<!-- 旧OA公文索引库 -->
-						<c:if test="${officeVoLists.type=='5'}">
-							<div class="ps_search_result_con clear">
-								<p class="elips"
-									onclick="viewdocumentold('${officeVoLists.guid}')">${officeVoLists.title}(历史)</p>
-								<c:if test="${officeVoLists.banwenbianhao!=null}">
-									<c:choose>
-										<c:when test="${officeVoLists.banwenbianhao=='null'}">
-											<div>
-												<span class="description"></span>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<p class="article">${officeVoLists.banwenbianhao}</p>
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-								<c:if test="${officeVoLists.laiwendanwei!=null}">
-									<c:choose>
-										<c:when test="${officeVoLists.laiwendanwei=='null'}">
-											<div>
-												<span class="description"></span>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<p class="article">${officeVoLists.laiwendanwei}</p>
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
+									<span>创建部门:${documents.dn}</span> <span>创建人:${documents.creatorname}</span>
+									<span>创建时间:${documents.createdatetime}</span>
 								</div>
 							</div>
 						</c:if>
 						<!-- 新OA正文索引库 -->
-						<c:if test="${officeVoLists.type=='2'}">
+						<c:if test="${documents.type=='2'}">
 							<div class="ps_search_result_con clear">
 								<p class="elips"
-									onclick="showZw(event,'${officeVoLists.id}','${officeVoLists.zwtitle}','zw','${officeVoLists.guid}','true','new')">${officeVoLists.zwtitle}</p>
-								<%-- <p class="elips" onclick="showZw('${officeVoLists.id}','${officeVoLists.zwtitle}','zw','${officeVoLists.guid}');">${officeVoLists.zwtitle}</p> --%>
+								   onclick="showZw(event,'${documents.id}','${documents.title}','zw','${documents.guid}','true','new')">${documents.title}</p>
+									<%-- <p class="elips" onclick="showZw('${documents.id}','${documents.zwtitle}','zw','${documents.guid}');">${documents.zwtitle}</p> --%>
 								<div>
 									<input class="fr" type="button" value="打开原件"
-										onclick="viewdocument('${officeVoLists.guid}')"
-										style="cursor:pointer;" />
+										   onclick="viewdocument('${documents.guid}')"
+										   style="cursor:pointer;" />
 								</div>
 								<c:choose>
-									<c:when test="${officeVoLists.zwcontent=='null'}">
+									<c:when test="${documents.data=='null'}">
 										<div>
 											<span class="description"></span>
 										</div>
 									</c:when>
 									<c:otherwise>
-										<p class="article">${officeVoLists.zwcontent}</p>
+										<p class="article">${documents.data}</p>
 									</c:otherwise>
 								</c:choose>
 								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
-								</div>
-							</div>
-						</c:if>
-						<!-- 旧OA正文索引库 -->
-						<c:if test="${officeVoLists.type=='6'}">
-							<div class="ps_search_result_con clear">
-								<p class="elips"
-									onclick="showZw(event,'${officeVoLists.id}','${officeVoLists.zwtitle}','zw','${officeVoLists.guid}','true','old')">${officeVoLists.zwtitle}</p>
-								<%-- <p class="elips" onclick="showZw('${officeVoLists.id}','${officeVoLists.zwtitle}','zw','${officeVoLists.guid}');">${officeVoLists.zwtitle}</p> --%>
-								<div>
-									<input class="fr" type="button" value="打开原件"
-										onclick="viewdocumentold('${officeVoLists.guid}')"
-										style="cursor:pointer;" />
-								</div>
-								<c:choose>
-									<c:when test="${officeVoLists.zwcontent=='null'}">
-										<div>
-											<span class="description"></span>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<p class="article">${officeVoLists.zwcontent}</p>
-									</c:otherwise>
-								</c:choose>
-								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
+									<span>创建部门:${documents.dn}</span> <span>创建人:${documents.creatorname}</span>
+									<span>创建时间:${documents.createdatetime}</span>
 								</div>
 							</div>
 						</c:if>
 						<!-- 新OA意见索引库 -->
-						<c:if test="${officeVoLists.type=='3'}">
+						<c:if test="${documents.type=='3'}">
 							<div class="ps_search_result_con clear">
-								<p class="elips" onclick="viewdocument('${officeVoLists.guid}')">${officeVoLists.commentTitle}</p>
+								<p class="elips" onclick="viewdocument('${documents.guid}')">${documents.title}</p>
 								<c:choose>
-									<c:when test="${officeVoLists.commentContent=='null'}">
+									<c:when test="${documents.data=='null'}">
 										<div>
 											<span class="description"></span>
 										</div>
 									</c:when>
 									<c:otherwise>
-										<p class="article">${officeVoLists.commentContent}</p>
+										<p class="article">${documents.data}</p>
 									</c:otherwise>
 								</c:choose>
 								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
-								</div>
-							</div>
-						</c:if>
-						<!-- 旧OA意见索引库 -->
-						<c:if test="${officeVoLists.type=='7'}">
-							<div class="ps_search_result_con clear">
-								<p class="elips"
-									onclick="viewdocumentold('${officeVoLists.guid}')">${officeVoLists.commentTitle}</p>
-								<c:choose>
-									<c:when test="${officeVoLists.commentContent=='null'}">
-										<div>
-											<span class="description"></span>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<p class="article">${officeVoLists.commentContent}</p>
-									</c:otherwise>
-								</c:choose>
-								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
+									<span>创建部门:${documents.dn}</span> <span>创建人:${documents.creatorname}</span>
+									<span>创建时间:${documents.createdatetime}</span>
 								</div>
 							</div>
 						</c:if>
 						<!-- 新OA附件索引库 -->
-						<c:if test="${officeVoLists.type=='4'}">
+						<c:if test="${documents.type=='4'}">
 							<div class="ps_search_result_con clear">
 								<p class="elips"
-									onclick="showZw(event,'${officeVoLists.id}','${officeVoLists.fjname}','fj','${officeVoLists.guid}','true','new')">${officeVoLists.fjname}</p>
-								<%-- <p class="elips" onclick="showZw('${officeVoLists.id}','${officeVoLists.fjname}','fj','${officeVoLists.guid}');">${officeVoLists.fjname}</p> --%>
+								   onclick="showZw(event,'${documents.id}','${documents.title}','fj','${documents.guid}','true','new')">${documents.title}</p>
+									<%-- <p class="elips" onclick="showZw('${documents.id}','${documents.title}','fj','${documents.guid}');">${documents.title}</p> --%>
 								<div>
 									<input class="fr" type="button" value="打开原件"
-										onclick="viewdocument('${officeVoLists.guid}')"
-										style="cursor:pointer;" />
+										   onclick="viewdocument('${documents.guid}')"
+										   style="cursor:pointer;" />
 								</div>
 								<c:choose>
-									<c:when test="${officeVoLists.fjcontent=='null'}">
+									<c:when test="${documents.data=='null'}">
 										<div>
 											<span class="description"></span>
 										</div>
 									</c:when>
 									<c:otherwise>
-										<p class="article">${officeVoLists.fjcontent}</p>
+										<p class="article">${documents.data}</p>
 									</c:otherwise>
 								</c:choose>
 								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
-								</div>
-							</div>
-						</c:if>
-						<!-- 旧OA附件索引库 -->
-						<c:if test="${officeVoLists.type=='8'}">
-							<div class="ps_search_result_con clear">
-								<p class="elips"
-									onclick="showZw(event,'${officeVoLists.id}','${officeVoLists.fjname}','fj','${officeVoLists.guid}','true','old')">${officeVoLists.fjname}</p>
-								<%-- <p class="elips" onclick="showZw('${officeVoLists.id}','${officeVoLists.fjname}','fj','${officeVoLists.guid}');">${officeVoLists.fjname}</p> --%>
-								<div>
-									<input class="fr" type="button" value="打开原件"
-										onclick="viewdocumentold('${officeVoLists.guid}')"
-										style="cursor:pointer;" />
-								</div>
-								<c:choose>
-									<c:when test="${officeVoLists.fjcontent=='null'}">
-										<div>
-											<span class="description"></span>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<p class="article">${officeVoLists.fjcontent}</p>
-									</c:otherwise>
-								</c:choose>
-								<div>
-									<span>创建部门:${officeVoLists.dept_shortdn}</span> <span>创建人:${officeVoLists.creatorname}</span>
-									<span>创建时间:${officeVoLists.createdatetime}</span>
+									<span>创建部门:${documents.dn}</span> <span>创建人:${documents.creatorname}</span>
+									<span>创建时间:${documents.createdatetime}</span>
 								</div>
 							</div>
 						</c:if>
@@ -835,7 +663,7 @@ div#users-contain table td,div#users-contain table th {
 	<!-- 高级检索对话框 -->
 	<div id="advanceSearchDialog"
 		style="display: none; padding-left: 40px;">
-		<form id="advSearchForm" action="${ctx}/search/search" method="post">
+		<form id="advSearchForm" action="${ctx}/api/search/search" method="post">
 			<center>
 				<table width="100%" class="ui-widget ui-widget-content">
 					<tr>
@@ -849,7 +677,7 @@ div#users-contain table td,div#users-contain table th {
 						<td style="text-align: left;"><select
 							class="text ui-widget-content ui-corner-all" id="searchOption"
 							name="searchType">
-								<option value="searchStr">全部</option>
+								<option value="search">全部</option>
 								<option value="title">标题</option>
 								<option value="commentContent">意见</option>
 								<option value="banwenbianhao">办文编号</option>
@@ -883,10 +711,10 @@ div#users-contain table td,div#users-contain table th {
 						</td>
 					</tr>
 					<tr>
-						<td><label for="dept_shortdn">部门：</label></td>
+						<td><label for="dn">部门：</label></td>
 						<td style="text-align: left;"><input type="text"
-							class="text ui-widget-content ui-corner-all" id="dept_shortdn"
-							name="dept_shortdn" /></td>
+							class="text ui-widget-content ui-corner-all" id="dn"
+							name="dn" /></td>
 					</tr>
 					<tr>
 						<td><label for="name">信息来源：</label></td>
@@ -901,8 +729,8 @@ div#users-contain table td,div#users-contain table th {
 					</tr>
 				</table>
 			</center>
-			<input type="hidden" id="advSearchKeyWord" name="keyWord" /> <input
-				type="hidden" id="advSearchQParams" name="QParams" value="" />
+			<input type="hidden" id="advSearchKeyWord" name="query" /> <input
+				type="hidden" id="advSearchQParams" name="filterQueryParams" value="" />
 		</form>
 	</div>
 </body>

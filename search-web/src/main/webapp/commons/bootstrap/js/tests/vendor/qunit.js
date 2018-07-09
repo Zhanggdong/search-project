@@ -316,7 +316,7 @@ if ( urlParams.filter === true ) {
 	delete urlParams.filter;
 }
 
-// String search anywhere in moduleName+testName
+// String query anywhere in moduleName+testName
 config.filter = urlParams.filter;
 
 config.testId = [];
@@ -2486,7 +2486,7 @@ QUnit.diff = ( function() {
 		if ( !text1 || !text2 || text1.charAt( 0 ) !== text2.charAt( 0 ) ) {
 			return 0;
 		}
-		// Binary search.
+		// Binary query.
 		// Performance analysis: https://neil.fraser.name/news/2007/10/09/
 		pointermin = 0;
 		pointermax = Math.min( text1.length, text2.length );
@@ -2519,7 +2519,7 @@ QUnit.diff = ( function() {
 				text1.charAt( text1.length - 1 ) !== text2.charAt( text2.length - 1 ) ) {
 			return 0;
 		}
-		// Binary search.
+		// Binary query.
 		// Performance analysis: https://neil.fraser.name/news/2007/10/09/
 		pointermin = 0;
 		pointermax = Math.min( text1.length, text2.length );

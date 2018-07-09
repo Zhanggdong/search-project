@@ -2,6 +2,7 @@ package com.huasisoft.search.demo.document;
 
 import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.get.GetResponse;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -17,6 +18,7 @@ public class GetAPI extends BaseTest{
      * 根据id查看文档
      */
     @Test
+    @Ignore
     public void testForGetApi() throws Exception {
         /**
          * 根据id查看文档

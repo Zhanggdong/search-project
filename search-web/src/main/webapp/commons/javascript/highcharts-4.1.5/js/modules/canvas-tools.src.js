@@ -208,7 +208,7 @@ function RGBColor(color_string)
         }
     ];
 
-    // search through the definitions to find a match
+    // query through the definitions to find a match
     for (var i = 0; i < color_defs.length; i++) {
         var re = color_defs[i].re;
         var processor = color_defs[i].process;

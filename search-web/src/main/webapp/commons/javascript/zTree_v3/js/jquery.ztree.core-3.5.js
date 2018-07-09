@@ -12,7 +12,7 @@
  */
 (function($){
 	var settings = {}, roots = {}, caches = {},
-	//default consts of core
+	//default constant of core
 	_consts = {
 		className: {
 			BUTTON: "button",

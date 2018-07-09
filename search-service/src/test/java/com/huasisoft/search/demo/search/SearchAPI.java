@@ -4,6 +4,7 @@ import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -17,6 +18,7 @@ import org.junit.Test;
 public class SearchAPI extends BaseTest {
 
     @Test
+    @Ignore
     public void testPrepareSearch() throws Exception{
         SearchResponse response = transportClient.prepareSearch("twitter")
                 .setTypes("tweet")//可以是多个类型

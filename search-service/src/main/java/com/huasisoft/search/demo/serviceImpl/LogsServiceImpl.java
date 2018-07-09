@@ -1,6 +1,5 @@
 package com.huasisoft.search.demo.serviceImpl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.huasisoft.search.demo.model.Logs;
 import com.huasisoft.search.demo.service.LogsService;
@@ -13,6 +12,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +28,8 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
  * @Description ES操作demo实现类
  * @Version 2.0.0
  */
-@Service
+@com.alibaba.dubbo.config.annotation.Service
+@Service("logsService")
 public class LogsServiceImpl implements LogsService {
 
     @Autowired

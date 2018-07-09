@@ -11,7 +11,7 @@
  * Date: 2015-06-18
  */
 (function($){
-	//default consts of excheck
+	//default constant of excheck
 	var _consts = {
 		event: {
 			CHECK: "ztree_check"

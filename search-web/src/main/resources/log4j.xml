@@ -27,7 +27,10 @@
 	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->		
 	<logger name="org.apache.commons">
 		<level value="error" />
-	</logger>	
+	</logger>
+	<logger name="org.apache.zookeeper">
+		<level value="error" />
+	</logger>
 	
 	<!-- 
 	<logger name="org.apache.ibatis.jdbc.ScriptRunner">

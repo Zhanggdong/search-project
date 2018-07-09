@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.huasisoft.search.core.mapper.AttachmentBaseMapper">
-  <resultMap id="BaseResultMap" type="com.huasisoft.search.core.model.db.AttachmentBase">
-    <result column="ID" jdbcType="VARCHAR" property="ID" />
-    <result column="GUID" jdbcType="VARCHAR" property="GUID" />
+<mapper namespace="com.huasisoft.search.admin.index.mapper.AttachmentBaseMapper">
+  <resultMap id="BaseResultMap" type="com.huasisoft.search.admin.index.model.AttachmentBase">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="GUID" jdbcType="VARCHAR" property="guid" />
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
-    <result column="FJNAME" jdbcType="VARCHAR" property="fjname" />
     <result column="BANWENBIANHAO" jdbcType="VARCHAR" property="banwenbianhao" />
     <result column="LAIWENDANWEI" jdbcType="VARCHAR" property="laiwendanwei" />
     <result column="CREATEDATE" jdbcType="VARCHAR" property="createdate" />
     <result column="CREATEDATETIME" jdbcType="DATE" property="createdatetime" />
-    <result column="LASTMODIFIED" jdbcType="DATE" property="lastmodified" />
     <result column="URL" jdbcType="VARCHAR" property="url" />
     <result column="CREATORGUID" jdbcType="VARCHAR" property="creatorGUID" />
     <result column="CREATORNAME" jdbcType="VARCHAR" property="creatorname" />
@@ -19,9 +17,8 @@
     <result column="BWTYPE" jdbcType="INTEGER" property="bwtype" />
     <result column="DEPARTMENTGUID" jdbcType="CHAR" property="departmentguid" />
     <result column="BUREAUNAME" jdbcType="VARCHAR" property="bureauname" />
-    <collection property="departments" ofType="com.huasisoft.search.core.model.db.DeptBaseInfo">
-      <id property="workflowinstanceGUID" column="workflowinstanceGUID"/>
-      <result column="departmentGUID" property="departmentGUID" />
+    <collection property="departments" column="attachment_instance_GUID" ofType="com.huasisoft.search.admin.index.model.DeptBaseInfo">
+      <id column="dept_GUID" property="workflowinstanceGUID" />
       <result column="departmentname" property="departmentname" />
       <result column="dn" property="dn"/>
       <result column="senduserGUID" property="senduserGUID"/>
@@ -29,32 +26,46 @@
     </collection>
   </resultMap>
   <select id="count" resultType="int">
-    SELECT COUNT(*) FROM ES_COMMENT_VIEWS
+    SELECT COUNT(*) FROM SEARCH_ATTACHMENT
   </select>
-  <select id="selectByPage" resultMap="BaseResultMap">
+  <select id="selectByPageInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from (select t1.*, rownum rn  from (select * from ES_ATTACHMENT_VIEWS) t1
+    where rownum &lt;= (#{pageNum} * #{pageSize})) where rn &gt;= (#{pageNum} - 1) * #{pageSize} + 1
+  </select>
+  <select id="selectByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
     SELECT
     t.ID,
     t.GUID,
     t.title,
-    t.fjname,
     t.bwtype,
     t.banwenbianhao,
     t.laiwendanwei,
-    t.createdate,
     t.createdateTime,
     t.creatorGUID,
     t.creatorname,
     t.dn,
     t.type,
     t.url,
-    t.bureauName,
-    d.workflowinstanceGUID,
-    d.senduserGUID,
-    d.senduserName,
-    d.departmentName,
-    d.departmentGUID
-    FROM ES_DEPT_VIEWS d
-    LEFT OUTER JOIN ES_ATTACHMENT_VIEWS t
-    on t.GUID = d.workflowinstanceGUID
+    t.bureauName
+    from SEARCH_ATTACHMENT t
+    WHERE  t.ROW_ID BETWEEN (#{pageNum} - 1) * #{pageSize} + 1 and (#{pageNum} * #{pageSize})
+  </select>
+  <select id="selectByPageFromTo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT
+    t.ID,
+    t.GUID,
+    t.title,
+    t.bwtype,
+    t.banwenbianhao,
+    t.laiwendanwei,
+    t.createdateTime,
+    t.creatorGUID,
+    t.creatorname,
+    t.dn,
+    t.type,
+    t.url,
+    t.bureauName
+    from SEARCH_ATTACHMENT t
+    WHERE  t.ROW_ID BETWEEN #{from} and #{to}
   </select>
 </mapper>

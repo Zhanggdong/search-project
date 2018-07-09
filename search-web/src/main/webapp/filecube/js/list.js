@@ -10,7 +10,7 @@ function data(keyWords, pageStart, QParams) {
   }
   $.ajax({
     type : 'POST',
-    url : contextPath + '/search/solrData',
+    url : contextPath + '/query/solrData',
     data : {
       q : qstr + _globalCondition,
       QParams : QParams,
@@ -193,9 +193,9 @@ function submitForm() {
     return;
   }
   if (text == '*') {
-    location.href = contextPath + "/search/search?keyWord=" + encodeURIComponent($('#searchText').val()) + "&QParams=" + encodeURIComponent(_QParams);
+    location.href = contextPath + "/query/query?keyWord=" + encodeURIComponent($('#searchText').val()) + "&QParams=" + encodeURIComponent(_QParams);
   } else {
-    location.href = contextPath + "/search/search?keyWord=" + encodeURIComponent($('#searchText').val());
+    location.href = contextPath + "/query/query?keyWord=" + encodeURIComponent($('#searchText').val());
   }
 }
 
@@ -203,11 +203,11 @@ function submitForm() {
 function pageselectCallback(pageStart, jq) {
   alert(3);
   var dataStart = pageStart * rows;
-  //location.href = contextPath + "/search/search?keyWord=" + encodeURIComponent(_List_searchKeyWords) + '&QParams=' + encodeURIComponent(_QParams) + '&pageStart=' + pageStart + '&rows=' + rows;
+  //location.href = contextPath + "/query/query?keyWord=" + encodeURIComponent(_List_searchKeyWords) + '&QParams=' + encodeURIComponent(_QParams) + '&pageStart=' + pageStart + '&rows=' + rows;
 }
 
 function openfile(guid) {
-  $.post(contextPath + '/search/checkPermission', {
+  $.post(contextPath + '/query/checkPermission', {
     'guid' : guid
   }, function(data) {
     if (data) {

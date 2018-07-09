@@ -12,7 +12,7 @@ function data(keyWords,dataStart,QParams){
 	}
 	$.ajax({
 		  type: 'POST',
-		  url: 'http://localhost:8080/filecube/search/searchByKeyword?keyWords=%E7%BD%97%E6%B9%96',
+		  url: 'http://localhost:8080/filecube/query/searchByKeyword?keyWords=%E7%BD%97%E6%B9%96',
 		  data: {
 			  q:keyWords + " entityType:file " + (QParams == '' ? '' : (' AND ' + QParams)),
 			  start:dataStart,

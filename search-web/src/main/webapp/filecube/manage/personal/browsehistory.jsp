@@ -94,7 +94,7 @@
             align : 'center',
             width : "20%"
           }],
-          url : '/search/openHistoryList',
+          url : '/query/openHistoryList',
           pageSize : 20,
           sortName : 'openDate',
           rownumbers : true,

@@ -9,6 +9,7 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -28,6 +29,7 @@ public class BulkProcessorAPI extends BaseTest{
     BulkProcessor bulkProcessor;
 
     @Test
+    @Ignore
     public void testBulkProcessor() throws Exception{
         bulkProcessor = BulkProcessor.builder(transportClient,//增加elasticsearch客户端
                 new BulkProcessor.Listener() {

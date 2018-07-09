@@ -53,7 +53,7 @@ $.widget( "ui.autocomplete", {
 		// Unfortunately the code for & in keypress is the same as the up arrow,
 		// so we use the suppressKeyPressRepeat flag to avoid handling keypress
 		// events when we know the keydown event was used to modify the
-		// search term. #7799
+		// query term. #7799
 		var suppressKeyPress, suppressKeyPressRepeat, suppressInput;
 
 		this.isMultiLine = this._isMultiLine();
@@ -122,7 +122,7 @@ $.widget( "ui.autocomplete", {
 					break;
 				default:
 					suppressKeyPressRepeat = true;
-					// search timeout should be triggered before the input value is changed
+					// query timeout should be triggered before the input value is changed
 					this._searchTimeout( event );
 					break;
 				}
@@ -376,7 +376,7 @@ $.widget( "ui.autocomplete", {
 	_searchTimeout: function( event ) {
 		clearTimeout( this.searching );
 		this.searching = this._delay(function() {
-			// only search if the value has changed
+			// only query if the value has changed
 			if ( this.term !== this._value() ) {
 				this.selectedItem = null;
 				this.search( null, event );
@@ -575,7 +575,7 @@ $.extend( $.ui.autocomplete, {
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
 	options: {
 		messages: {
-			noResults: "No search results.",
+			noResults: "No query results.",
 			results: function( amount ) {
 				return amount + ( amount > 1 ? " results are" : " result is" ) +
 					" available, use up and down arrow keys to navigate.";

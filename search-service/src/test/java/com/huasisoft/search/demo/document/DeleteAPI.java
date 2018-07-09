@@ -2,6 +2,7 @@ package com.huasisoft.search.demo.document;
 
 import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.delete.DeleteResponse;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,6 +20,7 @@ public class DeleteAPI extends BaseTest{
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testForDeleteAPI() throws Exception{
         DeleteResponse response = transportClient.prepareDelete("twitter", "tweet", "1")
                 .get();

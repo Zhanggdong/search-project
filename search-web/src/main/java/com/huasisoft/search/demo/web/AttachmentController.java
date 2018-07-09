@@ -2,9 +2,9 @@ package com.huasisoft.search.demo.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.huasisoft.search.common.util.JsonResult;
-import com.huasisoft.search.core.exception.ExcepCodeConst;
-import com.huasisoft.search.demo.model.AttachmentTest;
-import com.huasisoft.search.demo.service.AttachmentTestService;
+import com.huasisoft.search.common.exception.ExcepCodeConst;
+import com.huasisoft.search.admin.index.model.AttachmentBase;
+import com.huasisoft.search.demo.service.AttachmentService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,12 +21,13 @@ import java.util.List;
  * @Version 2.0.0
  */
 @RestController
-@RequestMapping("attachments")
+@RequestMapping("core/attachments")
 public class AttachmentController {
-    @Reference
-    private AttachmentTestService attachmentService;
+    @Reference(timeout = 60000)
+    private AttachmentService attachmentService;
+
     @RequestMapping(value = "/create",method = RequestMethod.PUT)
-    public JsonResult<Object> create(@RequestBody(required=false) AttachmentTest attachmentTest){
+    public JsonResult<Object> create(@RequestBody(required=false) AttachmentBase attachmentTest){
         JsonResult<Object> jsonResult = null;
         try {
             attachmentService.create(attachmentTest);
@@ -37,12 +38,12 @@ public class AttachmentController {
         }
         return jsonResult;
     }
-    @RequestMapping(value = "/createBulk",method = RequestMethod.POST)
-    public JsonResult<Object> createBulk(@RequestBody List<AttachmentTest> attachmentTests){
+    @RequestMapping(value = "/createBulk")
+    public JsonResult<Object> createBulk(@RequestBody(required=false) List<AttachmentBase> attachmentTests){
         JsonResult<Object> jsonResult = null;
         try {
-            attachmentService.createBulk(attachmentTests);
-            jsonResult = new JsonResult<Object>(attachmentTests);
+            boolean success = attachmentService.createBulk(attachmentTests);
+            jsonResult = new JsonResult<Object>(success);
         } catch (Exception e) {
             jsonResult = new JsonResult<Object>(ExcepCodeConst.EXCHANGE_SYS_EXCEP.getMessage(),ExcepCodeConst.EXCHANGE_SYS_EXCEP.getState());
             e.printStackTrace();
@@ -54,7 +55,7 @@ public class AttachmentController {
     public JsonResult<Object> search(String field,String keyword){
         JsonResult<Object> jsonResult = null;
         try {
-            List<AttachmentTest> attachmentTests = attachmentService.search(field,keyword);
+            List<AttachmentBase> attachmentTests = attachmentService.search(field,keyword);
             jsonResult = new JsonResult<Object>(attachmentTests);
         } catch (Exception e) {
             jsonResult = new JsonResult<Object>(ExcepCodeConst.EXCHANGE_SYS_EXCEP.getMessage(),ExcepCodeConst.EXCHANGE_SYS_EXCEP.getState());

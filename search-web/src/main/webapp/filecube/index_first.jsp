@@ -74,7 +74,7 @@ html {
         $('#createdate_endDate').val('');
 
         var departNameSelect = '<option value="all">不限</option>';
-        $.getJSON(contextPath + '/search/getBureauList?timestamp=' + new Date(), function(data) {
+        $.getJSON(contextPath + '/query/getBureauList?timestamp=' + new Date(), function(data) {
             if (data) {
                 $.each(data, function(index) {
                     departNameSelect += '<option value="' + data[index].guid + '">' + data[index].name + '</option>';

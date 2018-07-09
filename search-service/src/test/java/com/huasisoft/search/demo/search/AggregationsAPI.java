@@ -5,6 +5,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,6 +20,7 @@ import org.junit.Test;
  */
 public class AggregationsAPI extends BaseTest{
     @Test
+    @Ignore
     public void testSearchAggregations() throws Exception {
         SearchResponse response = transportClient.prepareSearch("twitter")
                 .setQuery(QueryBuilders.matchAllQuery())

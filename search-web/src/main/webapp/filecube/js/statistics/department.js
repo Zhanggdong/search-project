@@ -9,7 +9,7 @@ function getBureaunameFacetData() {
     var bureaudata;
     $.ajax({
         type : 'POST',
-        url : contextPath + '/search/solrData?',
+        url : contextPath + '/query/solrData?',
         dataType : 'JSON',
         data : {
             facet : true,

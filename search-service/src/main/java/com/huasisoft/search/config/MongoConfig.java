@@ -1,18 +1,21 @@
 package com.huasisoft.search.config;
 
-import com.mongodb.*;
+/*import com.mongodb.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;*/
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,10 +28,12 @@ import java.util.List;
  * @Description mongodb 配置
  * @Version 2.0.0
  */
-@Configuration
-@EnableMongoRepositories(basePackages = "com.huasisoft.search.**.repository")
-@EnableMongoAuditing
-public class MongoConfig extends AbstractMongoConfiguration {
+//@Configuration
+/*@EnableMongoRepositories(basePackages = "com.huasisoft.query.**.repository")
+@ComponentScan(basePackages = "com.huasisoft.query.**.model")
+@PropertySource({"classpath:/properties/mongodb.properties"})
+@EnableMongoAuditing*/
+public class MongoConfig{ /*extends AbstractMongoConfiguration {
     private static Logger logger = LoggerFactory.getLogger(MongoConfig.class.getName());
 
     @Value("${mongodb.host}")
@@ -68,6 +73,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
     @Value("${mongodb.writeFsync}")
     boolean writeFsync ;
 
+
     @Override
     protected String getDatabaseName() {
         return mgdbName;
@@ -96,16 +102,27 @@ public class MongoConfig extends AbstractMongoConfiguration {
     }
 
     @Bean
+    public MongoClient mongoClient() throws UnknownHostException {
+        ServerAddress serverAddress = new ServerAddress(mgdbHost,mgdbPort);
+        MongoCredential mongoCredential = MongoCredential.createCredential(mgdbUser, mgdbName, mgdbPwd.toCharArray());
+        List<MongoCredential> mongoCredentialList = new ArrayList<>();
+        mongoCredentialList.add(mongoCredential);
+        return new MongoClient(serverAddress,mongoCredentialList);
+    }
+
+
+    @Bean
     public MongoDbFactory mongoDbFactory() throws Exception{
-        return new SimpleMongoDbFactory(mongo(),mgdbName);
+        return new SimpleMongoDbFactory(mongoClient(),mgdbName);
+        //return new SimpleMongoDbFactory(mongo(),mgdbName);
     }
 
     @Override
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
-        MongoTemplate mongoTemplate = new MongoTemplate(mongo(), mgdbName);
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
         logger.info("*******" + mongoTemplate.getDb().getName());
         return mongoTemplate;
-    }
+    }*/
 
 }

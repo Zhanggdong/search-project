@@ -4,6 +4,7 @@ import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.get.MultiGetItemResponse;
 import org.elasticsearch.action.get.MultiGetResponse;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -17,6 +18,7 @@ import org.junit.Test;
 public class MultiGetAPI extends BaseTest{
 
     @Test
+    @Ignore
     public void testForPrepareMultiGet()  throws Exception{
         MultiGetResponse multiGetItemResponses = transportClient.prepareMultiGet()
                 .add("twitter", "tweet", "1") //一个id的方式

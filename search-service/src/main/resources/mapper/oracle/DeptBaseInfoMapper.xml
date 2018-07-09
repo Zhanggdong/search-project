@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.huasisoft.search.core.mapper.DeptBaseInfoMapper">
-  <resultMap id="BaseResultMap" type="com.huasisoft.search.core.model.db.DeptBaseInfo">
-    <result column="WORKFLOWINSTANCEGUID" jdbcType="VARCHAR" property="workflowinstanceGUID" />
-    <result column="SENDUSERGUID" jdbcType="VARCHAR" property="senduserGUID" />
-    <result column="SENDUSERNAME" jdbcType="VARCHAR" property="sendusername" />
-    <result column="DEPARTMENTNAME" jdbcType="VARCHAR" property="departmentname" />
-    <result column="DEPARTMENTGUID" jdbcType="CHAR" property="departmentGUID" />
-    <result column="DN" jdbcType="VARCHAR" property="dn" />
+<mapper namespace="com.huasisoft.search.admin.index.mapper.DeptBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.huasisoft.search.admin.index.model.DeptBaseInfo">
+      <result column="WORKFLOWINSTANCEGUID" jdbcType="VARCHAR" property="workflowinstanceGUID" />
+      <result column="SENDUSERGUID" jdbcType="VARCHAR" property="senduserGUID" />
+      <result column="SENDUSERNAME" jdbcType="VARCHAR" property="sendusername" />
+      <result column="DEPARTMENTNAME" jdbcType="VARCHAR" property="departmentname" />
+      <result column="DEPARTMENTGUID" jdbcType="CHAR" property="departmentGUID" />
+      <result column="DN" jdbcType="VARCHAR" property="dn" />
   </resultMap>
   <select id="selectByWorkflowinstanceGUID" parameterType="string" resultMap="BaseResultMap">
     SELECT
@@ -17,7 +17,7 @@
      DEPARTMENTNAME,
      DEPARTMENTGUID,
      DN
-     FROM ES_DEPT_VIEWS
+     FROM SEARCH_DEPTINFO
      WHERE WORKFLOWINSTANCEGUID=#{WORKFLOWINSTANCEGUID}
   </select>
 </mapper>

@@ -4,7 +4,7 @@ package com.huasisoft.search.demo.model;
 
 import java.io.Serializable;
 
-import static sun.plugin.javascript.navig.JSType.Document;
+
 
 /**
  * @author 张贵东

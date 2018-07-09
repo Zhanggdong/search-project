@@ -1,6 +1,6 @@
 package com.huasisoft.search.admin.beans;
 
-import com.huasisoft.search.admin.constant.DBIndexType;
+import com.huasisoft.search.admin.index.constant.DBIndexType;
 
 import java.io.Serializable;
 

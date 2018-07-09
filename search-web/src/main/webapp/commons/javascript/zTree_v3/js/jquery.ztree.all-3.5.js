@@ -13,7 +13,7 @@
  */
 (function($){
 	var settings = {}, roots = {}, caches = {},
-	//default consts of core
+	//default constant of core
 	_consts = {
 		className: {
 			BUTTON: "button",
@@ -1727,7 +1727,7 @@
  * Date: 2015-06-18
  */
 (function($){
-	//default consts of excheck
+	//default constant of excheck
 	var _consts = {
 		event: {
 			CHECK: "ztree_check"
@@ -2355,7 +2355,7 @@
  * Date: 2015-06-18
  */
 (function($){
-	//default consts of exedit
+	//default constant of exedit
 	var _consts = {
 		event: {
 			DRAG: "ztree_drag",

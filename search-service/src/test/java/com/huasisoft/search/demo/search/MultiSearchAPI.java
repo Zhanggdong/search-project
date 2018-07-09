@@ -5,6 +5,7 @@ import org.elasticsearch.action.search.MultiSearchResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -18,6 +19,7 @@ import org.junit.Test;
 public class MultiSearchAPI extends BaseTest {
 
     @Test
+    @Ignore
     public void testMultiSearch(){
         SearchRequestBuilder builder1 = transportClient.prepareSearch()
                 .setQuery(QueryBuilders.queryStringQuery("elasticsearch")).setSize(1);

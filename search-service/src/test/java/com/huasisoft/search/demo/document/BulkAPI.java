@@ -3,6 +3,7 @@ package com.huasisoft.search.demo.document;
 import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
  */
 public class BulkAPI extends BaseTest {
     @Test
+    @Ignore
     public void testPrepareBulk() throws IOException {
         BulkRequestBuilder bulkRequest = transportClient.prepareBulk();
 // either use client#prepare, or use Requests# to directly build index/delete requests

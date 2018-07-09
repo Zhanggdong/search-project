@@ -215,6 +215,6 @@ function pageselectCallback(start, jq){
 	//遍历searchId下得li，含有class为ps_search_result_tab_sel，获取这个id，表示当前是选择这个type的
 	var type='biaoti';
 	//location.href = "/fulltext/search_preCommonsList.action?keyWords=" + encodeURIComponent(_keyWords)
-	location.href = "/search/SearchController.action?keyWords=" + encodeURIComponent(_keyWords)
+	location.href = "/query/SearchController.action?keyWords=" + encodeURIComponent(_keyWords)
 	+ '&dataStart=' + cur_pageStart + '&pageStart=' + start + "&QParams=" + encodeURIComponent(_QParams)+"&searchType=" + type;
 }

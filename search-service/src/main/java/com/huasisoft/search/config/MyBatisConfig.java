@@ -23,7 +23,7 @@ import com.github.pagehelper.PageHelper;
 
 @Configuration
 @EnableTransactionManagement(proxyTargetClass=false,mode=AdviceMode.PROXY,order=201)
-@MapperScan(basePackages = "com.huasisoft.search.**.mapper",sqlSessionFactoryRef="sqlSessionFactory",sqlSessionTemplateRef="sqlSessionTemplate")
+@MapperScan(basePackages = {"com.huasisoft.search.**.mapper"},sqlSessionFactoryRef="sqlSessionFactory",sqlSessionTemplateRef="sqlSessionTemplate")
 public class MyBatisConfig {
 
 	@Resource(name = "dataSource")
@@ -49,7 +49,7 @@ public class MyBatisConfig {
 		sqlSessionFactory.setDataSource(dataSource);
 		sqlSessionFactory.setConfigLocation(new ClassPathResource("mapper/mybatis-config.xml"));
 		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/**/*Mapper.xml"));
-		sqlSessionFactory.setTypeAliasesPackage("com.huasisoft.hae.**.model");
+		sqlSessionFactory.setTypeAliasesPackage("com.huasisoft.search.**.model");
 		sqlSessionFactory.setPlugins(new Interceptor[]{pageHelper()});
 	    return sqlSessionFactory;  
 	}

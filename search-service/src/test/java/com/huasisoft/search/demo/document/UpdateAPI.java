@@ -2,6 +2,7 @@ package com.huasisoft.search.demo.document;
 
 import com.huasisoft.search.BaseTest;
 import org.elasticsearch.action.update.UpdateRequest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
@@ -21,6 +22,7 @@ public class UpdateAPI extends BaseTest{
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testForUpdateRequest() throws Exception{
         UpdateRequest request = new UpdateRequest();
         request.index("twitter");
@@ -40,6 +42,7 @@ public class UpdateAPI extends BaseTest{
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testForPrepareUpdate() throws Exception {
 //        client.prepareUpdate("twitter", "tweet", "2")
 //                .setScript(new Script(ScriptType.INLINE, "ctx._source.user = \"quanke.name\"", null, null))

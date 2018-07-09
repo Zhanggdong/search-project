@@ -11,7 +11,7 @@
  * Date: 2015-06-18
  */
 (function($){
-	//default consts of exedit
+	//default constant of exedit
 	var _consts = {
 		event: {
 			DRAG: "ztree_drag",

@@ -4,15 +4,17 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * @author 张贵东
  * @Company 华思软件
  * @date 2018-05-10.
  * @Time 15:13
- * @Description TODO
+ * @Description Bean自定义代理接口
  * @Version 2.0.0
  */
+@Component
 public class ProxySpringContextsUtil implements ApplicationContextAware{
     private static ApplicationContext applicationContext;    //Spring应用上下文环境
     /**

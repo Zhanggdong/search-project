@@ -65,6 +65,7 @@ public class IndexAPI extends BaseTest{
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testForUseXContentBuilder() throws Exception {
         XContentBuilder builder = jsonBuilder()
                 .startObject()

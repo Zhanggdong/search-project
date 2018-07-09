@@ -1,9 +1,9 @@
 $(function() {
-  $.post(contextPath + '/search/hotWordsTop10', function(data) {
+  $.post(contextPath + '/query/hotWordsTop10', function(data) {
     var str = "";
     if (data) {
       for (var i = 0; i < data.length; i++) {
-        str += '<li><a href="' + contextPath + '/search/search?keyWord=' + encodeURIComponent(data[i].keyWord) + '" >';
+        str += '<li><a href="' + contextPath + '/query/query?keyWord=' + encodeURIComponent(data[i].keyWord) + '" >';
         str += data[i].keyWord;
         str += '</a></li>';
         if (i > 5)
@@ -21,7 +21,7 @@ $(function() {
       $("#fileSource").removeAttr("disabled");
 
       var typeSelect = '<option value="all">不限</option>';
-      $.getJSON(contextPath + '/search/getAppList', function(data) {
+      $.getJSON(contextPath + '/query/getAppList', function(data) {
         if (data) {
           $.each(data, function(index) {
             typeSelect += '<option value="' + data[index][0] + '">' + data[index][1] + '</option>';
@@ -61,5 +61,5 @@ function submitForm() {
   if (text.replace(/[ ]/g, "") == "") {
     return;
   }
-  location.href = contextPath + "/search/search?keyWord=" + encodeURIComponent($('#searchText').val());
+  location.href = contextPath + "/api/query/query?query=" + encodeURIComponent($('#searchText').val());
 }

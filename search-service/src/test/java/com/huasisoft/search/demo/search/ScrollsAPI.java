@@ -9,6 +9,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -23,6 +24,7 @@ public class ScrollsAPI extends BaseTest{
     private String scrollId;
 
     @Test
+    @Ignore
     public void testScrolls() throws Exception {
 
         SearchResponse scrollResp = transportClient.prepareSearch("twitter")

@@ -87,7 +87,7 @@ $(function() {
   });
 
   // 获取关联打开文件记录
-  /*$.post('/search/getRelationByOpenHistory', {
+  /*$.post('/query/getRelationByOpenHistory', {
     "fileGUID" : viewFile_FileUid
   }, function(data) {
     var str = '';
@@ -102,7 +102,7 @@ $(function() {
   });*/
 
   // 获取关联收藏文件记录
-  /*$.post('/search/getRelationByFavorite', {
+  /*$.post('/query/getRelationByFavorite', {
     "fileGUID" : viewFile_FileUid
   }, function(data) {
     var str = '';
